@@ -1,0 +1,31 @@
+{
+  "name": "ufersa-vdb",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "jsonwebtoken": "^8.0.1",
+    "morgan": "^1.8.2",
+    "nodemon": "^1.12.1"
+  },
+  "description": "Aplicação Javascript utilizando NodeJs e ExpressJs.",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aretw0/UFERSA-Vai-de-bike.git"
+  },
+  "keywords": [
+    "bike",
+    "sharing"
+  ],
+  "author": "Arthur Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aretw0/UFERSA-Vai-de-bike/issues"
+  },
+  "homepage": "https://github.com/aretw0/UFERSA-Vai-de-bike#readme"
+}
