@@ -4,9 +4,11 @@
   "dependencies": {
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
+    "git": "^0.1.5",
     "jsonwebtoken": "^8.0.1",
     "morgan": "^1.8.2",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "npm": "^5.4.2"
   },
   "description": "Aplicação Javascript utilizando NodeJs e ExpressJs.",
   "version": "1.0.0",
