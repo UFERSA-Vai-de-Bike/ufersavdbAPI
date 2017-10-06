@@ -8,15 +8,12 @@ var bodyparser = require('body-parser');
 var morgan = require('morgan');
 
 var jwt =  require('jsonwebtoken'); // usado pra criar, assinar e verificar tokens
-var config = require('./config'); // pegando o arquivo de configuração
+//var config = require('./config'); // pegando o arquivo de configuração
 
 // ==================================
 // configuração =====================
 // ==================================
-
-var port = process.env.port || 8080;
-app.set('superSecret', config.secret);
-
+// app.set('superSecret', config.secret);
 // usando bodyparser para podermos pegar info de POST e parâmetros URL
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
@@ -28,18 +25,37 @@ app.use(morgan('dev'));
 // ==================================
 // rotas ============================
 // ==================================
-// rota basica
-app.get('/', function(req, res) {
-	res.send('Olá! A API esta no http://localhost:' + port + '/api');
+var index = require('./routes/index');
+var users = require('./routes/users');
+
+app.use('/api', index);
+app.use('/api/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-// ROTAS DA API -------------
-// chegaremos la
+// erro de desenvolvimento
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status( err.code || 500 )
+    .json({
+      status: 'error',
+      message: err
+    });
+  });
+}
 
+// error de produção
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500)
+  .json({
+    status: 'error',
+    message: err.message
+  });
+});
 
-// ==================================
-// iniciando o servidor
-// ==================================
-app.listen(port);
-
-console.log('A magia acontece em http://localhost:' + port);
+module.exports = app;

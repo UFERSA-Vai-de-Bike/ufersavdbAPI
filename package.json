@@ -2,19 +2,23 @@
   "name": "ufersa-vdb",
   "main": "server.js",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.1",
+    "debug": "~2.6.3",
     "express": "^4.15.4",
     "git": "^0.1.5",
     "jsonwebtoken": "^8.0.1",
     "morgan": "^1.8.2",
     "nodemon": "^1.12.1",
-    "npm": "^5.4.2"
+    "npm": "^5.4.2",
+    "pg-promise": "^6.10.2"
   },
   "description": "Aplicação Javascript utilizando NodeJs e ExpressJs.",
   "version": "1.0.0",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
