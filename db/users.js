@@ -4,19 +4,47 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgresql://postgres:admin@localhost:5432/ufersavdb_1';
+var connectionString = 'postgresql://postgres:admin@localhost:5432/ufersa_vdb_1';
 var db = pgp(connectionString);
 
 // add query functions
 
+var queryResult =  {
+    one: 1,
+    many: 2,
+    none: 4,
+    any: 6
+}
+/*
+-- SELECT createClient(role,name,senha);
+-- SELECT * FROM getClients();
+-- SELECT * FROM getClient(idCli);
+
+-- SELECT changeSit(idCli);
+
+-- INFO CLIENTE
+
+-- SELECT upd_info_cli(idCli,fullName,email,contato,ocupacao,sexo,dataNasc);
+-- SELECT * FROM getInfosCli();
+-- SELECT * FROM getInfoCli(idCli);
+
+-- HISTORY CLIENT
+
+-- SELECT add_history_cli(idCli,texto);
+-- SELECT * FROM getHistsCli();
+-- SELECT * FROM getHistCli(idCli);
+
+*/
+
 function getUsers(req, res, next) {
-  db.any('select * from users')
+
+  db.func('getClients')
     .then(function (data) {
       res.status(200)
         .json({
           status: 'success',
           data: data,
-          message: 'Retrieved ALL users'
+          message: 'Retorna todos os usuários'
         });
     })
     .catch(function (err) {
@@ -26,13 +54,13 @@ function getUsers(req, res, next) {
 
 function getUser(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.one('select * from users where id = $1', userID)
+  db.func('getClient', userID, queryResult.one)
     .then(function (data) {
       res.status(200)
         .json({
           status: 'success',
           data: data,
-          message: 'Retrieved ONE user'
+          message: 'Retorna um usuário'
         });
     })
     .catch(function (err) {
@@ -41,15 +69,14 @@ function getUser(req, res, next) {
 }
 
 function createUser(req, res, next) {
-  req.body.age = parseInt(req.body.age);
-  db.none('insert into user(name, breed, age, sex)' +
-      'values(${name}, ${breed}, ${age}, ${sex})',
+  req.body.role = parseInt(req.body.role);
+  db.func('createUser',
     req.body)
     .then(function () {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Inserted one user'
+          message: 'Um usuário inserido'
         });
     })
     .catch(function (err) {
@@ -71,27 +98,34 @@ function updateUser(req, res, next) {
       return next(err);
     });
 }
-function removeUser(req, res, next) {
-  var userID = parseInt(req.params.id);
-  db.result('delete from users where id = $1', userID)
-    .then(function (result) {
-      /* jshint ignore:start */
-      res.status(200)
-        .json({
-          status: 'success',
-          message: `Removed ${result.rowCount} user`
-        });
-      /* jshint ignore:end */
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}
+
+// function removeUser(req, res, next) {
+//   var userID = parseInt(req.params.id);
+//   db.result('delete from users where id = $1', userID)
+//     .then(function (result) {
+//       /* jshint ignore:start */
+//       res.status(200)
+//         .json({
+//           status: 'success',
+//           message: `Removed ${result.rowCount} user`
+//         });
+//       /* jshint ignore:end */
+//     })
+//     .catch(function (err) {
+//       return next(err);
+//     });
+// }
 
 module.exports = {
   getUsers: getUsers,
   getUser: getUser,
+  // changeSit: changeSit,
+  // getInfos: getInfos,
+  // getInfo: getInfo,
+  // getLogs: getLogs,
+  // getLog: getLog,
   createUser: createUser,
-  updateUser: updateUser,
-  removeUser: removeUser
+  updateUser: updateUser/*,
+  updateUserInfo: updateUserInfo,
+  removeUser: removeUser*/
 };

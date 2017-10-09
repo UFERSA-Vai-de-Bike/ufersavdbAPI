@@ -27,6 +27,11 @@ app.use(morgan('dev'));
 // ==================================
 var index = require('./routes/index');
 var users = require('./routes/users');
+//var bikes = require('./routes/bikes');
+//var stations = require('./routes/stations');
+//var transactions = require('./routes/loans');
+//var returns = require('./routes/returns');
+
 
 app.use('/api', index);
 app.use('/api/users', users);
