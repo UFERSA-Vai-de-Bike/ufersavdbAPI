@@ -67,20 +67,6 @@ function getStationLog(req, res, next) {
 }
 
 function createStation(req, res, next) {
-  db.func('createBikeStation',
-    req.body)
-    .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Uma estação inserida'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}
-/*function createStation(req, res, next) {
   db.func('createBikeStation',[req.body.name,req.body.senha])
     .then(function () {
       res.status(200)
@@ -92,22 +78,9 @@ function createStation(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}*/
-function updateStation(req, res, next) {
-  req.body.id = parseInt(req.body.id)
-  db.func('upd_bike_station',req.body)
-    .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Atualizou uma estação'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
 }
-/*function updateStation(req, res, next) {
+
+function updateStation(req, res, next) {
   db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.senha])
     .then(function () {
       res.status(200)
@@ -119,7 +92,7 @@ function updateStation(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}*/
+}
 
 function removeStations(req, res, next) {
   var stID = parseInt(req.params.id);

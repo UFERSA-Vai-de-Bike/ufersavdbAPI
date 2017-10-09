@@ -5,6 +5,22 @@ var queryResult = connector.queryResult;
 
 // add query functions
 
+function login(req, res, next) {
+    db.func('getClientLogin',[req.body.username,req.body.senha], queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Login de usuario' + req.body.username + ' efetuado'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+
 function getUsers(req, res, next) {
   db.func('getClients')
     .then(function (data) {
@@ -99,21 +115,6 @@ function getLog(req, res, next) {
 }
 
 function createUser(req, res, next) {
-  req.body.role = parseInt(req.body.role);
-  db.func('createClient',
-    req.body)
-    .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Um usuário inserido'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}
-/*function createUser(req, res, next) {
   db.func('createClient',
     [parseInt(req.body.role),req.body.username,req.body.senha])
     .then(function () {
@@ -126,23 +127,8 @@ function createUser(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}*/
-function updateUser(req, res, next) {
-  req.body.id = parseInt(req.body.id)
-  req.body.role = parseInt(req.body.role)
-  db.func('upd_cli',req.body)
-    .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Atualizou usuário'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
 }
-/*function updateUser(req, res, next) {
+function updateUser(req, res, next) {
   db.func('upd_cli',[parseInt(req.bod.id),parseInt(req.body.role),req.body.username,req.body.senha])
     .then(function () {
       res.status(200)
@@ -154,23 +140,9 @@ function updateUser(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}*/
-function updateUserInfo(req, res, next) {
-  req.body.id = parseInt(req.body.id);
-  req.body.role = parseInt(req.body.role);
-  db.func('upd_info_cli',req.body)
-    .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Atualizou as informações de 1 usuário'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
 }
-/*function updateUserInfo(req, res, next) {
+
+function updateUserInfo(req, res, next) {
   db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha])
     .then(function () {
       res.status(200)
@@ -182,7 +154,7 @@ function updateUserInfo(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}*/
+}
 
 function removeUser(req, res, next) {
   var userID = parseInt(req.params.id);
@@ -229,13 +201,14 @@ function changeSit(req, res, next) {
 }
 
 module.exports = {
+    login: login,
   getUsers: getUsers, // feito
   getUser: getUser, // feito
   changeSit: changeSit, // feito
   getInfos: getInfos, // feito
   getInfo: getInfo, // feito
-  getLogs: getLogs, // feito
-  getLog: getLog, // feito
+  getUsersLog: getLogs, // feito
+  getUserLog: getLog, // feito
   createUser: createUser, // feito
   updateUser: updateUser, // feito
   updateUserInfo: updateUserInfo, // feito

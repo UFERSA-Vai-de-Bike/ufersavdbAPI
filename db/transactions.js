@@ -8,21 +8,6 @@ var queryResult = connector.queryResult;
 
 // add query functions
 
-/*
--- SELECT add_out_log(idStation,idBike,idCli,nSlot);
--- SELECT * FROM getCountOutLogs();
--- SELECT * FROM getOutLogs();
--- SELECT * FROM getOutLogBike(idBike);
--- SELECT * FROM getOutLogCli(idCli);
--- SELECT * FROM getOutLogStation(idStation);
--- SELECT add_in_log(idStation,idBike,idCli,nSlot);
--- SELECT getCountInLogs();
--- SELECT * FROM getInLogs();
--- SELECT * FROM getInLogBike(idBike);
--- SELECT * FROM getInLogCli(idCli);
--- SELECT * FROM getInLogStation(idStation);
-*/
-
 function getCountOutLogs(req, res, next) {
   db.func('getCountOutLogs')
     .then(function (data) {
@@ -180,26 +165,8 @@ function getInLogCli(req, res, next) {
 }
 
 
-/*function doLoan(req, res, next) {
-  db.func('add_out_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)])
-    .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Uma bike inserida'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}*/
-
 function doLoan(req, res, next) {
-	req.body.idst = parseInt(req.body.idst);
-	req.body.idbk = parseInt(req.body.idbk);
-	req.body.nslt = parseInt(req.body.nslt);
-  db.func('add_out_log',
-    req.body)
+  db.func('add_out_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)])
     .then(function () {
       res.status(200)
         .json({
@@ -212,26 +179,8 @@ function doLoan(req, res, next) {
     });
 }
 
-/*function doReturn(req, res, next) {
-  db.func('add_in_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)])
-    .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Uma bike inserida'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}*/
-
 function doReturn(req, res, next) {
-	req.body.idst = parseInt(req.body.idst);
-	req.body.idbk = parseInt(req.body.idbk);
-	req.body.nslt = parseInt(req.body.nslt);
-  db.func('add_in_log',
-    req.body)
+  db.func('add_in_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)])
     .then(function () {
       res.status(200)
         .json({

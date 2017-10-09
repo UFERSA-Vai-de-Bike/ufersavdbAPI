@@ -9,8 +9,8 @@ router.get('/sit/:id', db.changeSit);
 
 router.get('/info/', db.getInfos);
 router.get('/info/:id', db.getInfo);
-router.get('/log/', db.getLogs);
-router.get('/log/:id', db.getLog);
+router.get('/log', db.getUsersLog);
+router.get('/log/:id', db.getUserLog);
 
 
 router.post('/', db.createUser);
