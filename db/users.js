@@ -22,7 +22,7 @@ function login(req, res, next) {
 
 
 function getUsers(req, res, next) {
-  db.func('getClients')
+  db.func('getClients',undefined,queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -52,8 +52,23 @@ function getUser(req, res, next) {
     });
 }
 
+function getUserByUserName(req, res, next) {
+    db.func('getClientByUserName', req.params.name, queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna um usuário'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
 function getInfos(req, res, next) {
-  db.func('getInfosCli')
+  db.func('getInfosCli',undefined, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -84,7 +99,7 @@ function getInfo(req, res, next) {
 }
 
 function getLogs(req, res, next) {
-  db.func('getHistsCli')
+  db.func('getHistsCli', undefined, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -116,7 +131,7 @@ function getLog(req, res, next) {
 
 function createUser(req, res, next) {
   db.func('createClient',
-    [parseInt(req.body.role),req.body.username,req.body.senha])
+    [parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
@@ -129,7 +144,7 @@ function createUser(req, res, next) {
     });
 }
 function updateUser(req, res, next) {
-  db.func('upd_cli',[parseInt(req.bod.id),parseInt(req.body.role),req.body.username,req.body.senha])
+  db.func('upd_cli',[parseInt(req.bod.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
@@ -143,7 +158,7 @@ function updateUser(req, res, next) {
 }
 
 function updateUserInfo(req, res, next) {
-  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha])
+  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
@@ -172,7 +187,7 @@ function removeUser(req, res, next) {
 }
 
 function removeUsers(req, res, next) {
-  db.func('delClients')
+  db.func('delClients',undefined,queryResult.none)
     .then(function (result) {
       res.status(200)
         .json({
@@ -204,6 +219,7 @@ module.exports = {
     login: login,
   getUsers: getUsers, // feito
   getUser: getUser, // feito
+    getUserByUserName: getUserByUserName, // feito
   changeSit: changeSit, // feito
   getInfos: getInfos, // feito
   getInfo: getInfo, // feito

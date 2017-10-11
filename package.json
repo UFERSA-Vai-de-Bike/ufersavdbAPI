@@ -18,11 +18,12 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "start:debug": "DEBUG=express:* nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aretw0/UFERSA-Vai-de-bike.git"
+    "url": "git+https://github.com/aretw0/ufersavdbAPI.git"
   },
   "keywords": [
     "bike",

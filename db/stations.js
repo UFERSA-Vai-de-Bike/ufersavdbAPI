@@ -5,7 +5,7 @@ var queryResult = connector.queryResult;
 
 
 function getStations(req, res, next) {
-  db.func('getStations')
+  db.func('getStations',undefined,queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -35,8 +35,23 @@ function getStation(req, res, next) {
     });
 }
 
+/*function getUserByUserName(req, res, next) {
+    db.func('getClientByUserName', req.params.name, queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna um usuário'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}*/
+
 function getStationLogs(req, res, next) {
-  db.func('getHistsStation')
+  db.func('getHistsStation',undefined,queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -52,7 +67,7 @@ function getStationLogs(req, res, next) {
 
 function getStationLog(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('getHistStation', stID, queryResult.one)
+  db.func('getHistStation', stID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -110,7 +125,7 @@ function removeStations(req, res, next) {
 }
 
 function removeStation(req, res, next) {
-  db.func('delStation')
+  db.func('delStation',undefined,queryResult.none)
     .then(function (result) {
       res.status(200)
         .json({
@@ -168,11 +183,12 @@ function deassignSlot(req, res, next) {
 
 function getSlots(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('getSlots',stID, queryResult.none)
+  db.func('getSlots',stID, queryResult.many)
     .then(function (result) {
       res.status(200)
         .json({
           status: 'success',
+            data: result,
           message: 'Retorna os slots de uma estação'
         });
     })
@@ -185,7 +201,7 @@ module.exports = {
   getStations: getStations, // feito
   getStation: getStation, // feito
   changeStationState: changeStationState, // feito
-  getStationLogs: getStationLogs, // feito
+  getStationLogs: getStationLogs, // feito mas não funciona
   getStationLog: getStationLog, // feito
   assignSlot: assignSlot, // feito
   deassignSlot: deassignSlot, // feito

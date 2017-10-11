@@ -9,7 +9,7 @@ var queryResult = connector.queryResult;
 // add query functions
 
 function getCountOutLogs(req, res, next) {
-  db.func('getCountOutLogs')
+  db.func('getCountOutLogs',undefined,queryResult.one)
     .then(function (data) {
       res.status(200)
         .json({
@@ -23,24 +23,9 @@ function getCountOutLogs(req, res, next) {
     });
 }
 
-function getOutLogs(req, res, next) {
-  db.func('getOutLogs')
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retorna todos os empréstimos'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}
-
 function getOutLogBike(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('getOutLogBike', bkID, queryResult.one)
+  db.func('getOutLogBike', bkID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -56,7 +41,7 @@ function getOutLogBike(req, res, next) {
 
 function getOutLogStation(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('getOutLogCli', stID, queryResult.one)
+  db.func('getOutLogStation', stID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -72,7 +57,7 @@ function getOutLogStation(req, res, next) {
 
 function getOutLogCli(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getOutLogStation', userID, queryResult.one)
+  db.func('getOutLogCli', userID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -87,7 +72,7 @@ function getOutLogCli(req, res, next) {
 }
 
 function getCountInLogs(req, res, next) {
-  db.func('getCountInLogs')
+  db.func('getCountInLogs',undefined,queryResult.one)
     .then(function (data) {
       res.status(200)
         .json({
@@ -101,24 +86,9 @@ function getCountInLogs(req, res, next) {
     });
 }
 
-function getInLogs(req, res, next) {
-  db.func('getInLogs')
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retorna todas as devoluções'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}
-
 function getInLogBike(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('getInLogBike', bkID, queryResult.one)
+  db.func('getInLogBike', bkID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -134,7 +104,7 @@ function getInLogBike(req, res, next) {
 
 function getInLogStation(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('getInLogCli', stID, queryResult.one)
+  db.func('getInLogStation', stID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -150,7 +120,7 @@ function getInLogStation(req, res, next) {
 
 function getInLogCli(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getInLogStation', userID, queryResult.one)
+  db.func('getInLogCli', userID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -166,12 +136,12 @@ function getInLogCli(req, res, next) {
 
 
 function doLoan(req, res, next) {
-  db.func('add_out_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)])
+  db.func('add_out_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Uma bike inserida'
+          message: 'Uma bike foi entregue'
         });
     })
     .catch(function (err) {
@@ -180,17 +150,46 @@ function doLoan(req, res, next) {
 }
 
 function doReturn(req, res, next) {
-  db.func('add_in_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)])
+  db.func('add_in_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Uma bike inserida'
+          message: 'Uma bike foi devolvida'
         });
     })
     .catch(function (err) {
       return next(err);
     });
+}
+
+function getOutLogs(req, res, next) {
+    db.func('getOutLogsText',undefined,queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna as devoluções'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+function getInLogs(req, res, next) {
+    db.func('getInLogsText',undefined,queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna os empréstimos'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
 }
 
 module.exports = {
