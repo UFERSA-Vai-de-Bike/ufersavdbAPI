@@ -29,16 +29,14 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var stations = require('./routes/stations');
 var bikes = require('./routes/bikes');
-var loans = require('./routes/loans');
-var returns = require('./routes/returns');
+var transactions = require('./routes/transactions');
 
 
 app.use('/api', index);
 app.use('/api/users', users);
 app.use('/api/stations', stations);
 app.use('/api/bikes', bikes);
-app.use('/api/loans', loans);
-app.use('/api/returns', returns);
+app.use('/api/transactions', transactions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

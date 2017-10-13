@@ -20,6 +20,21 @@ function login(req, res, next) {
         });
 }
 
+function signup(req, res, next) {
+    db.func('signUpClient',
+        [parseInt(req.body.role),req.body.username,req.body.password,req.body.fullname,req.body.email,req.body.phone,
+            req.body.profession,req.body.sex,req.body.birthdate],queryResult.none)
+        .then(function () {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Um usuário cadastrado'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
 
 function getUsers(req, res, next) {
   db.func('getClients',undefined,queryResult.many)
@@ -36,6 +51,21 @@ function getUsers(req, res, next) {
     });
 }
 
+function getUserNames(req, res, next) {
+    db.func('getClientsUserName', undefined, queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna o nome de todos os usuário'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
 function getUser(req, res, next) {
   var userID = parseInt(req.params.id);
   db.func('getClient', userID, queryResult.one)
@@ -50,21 +80,6 @@ function getUser(req, res, next) {
     .catch(function (err) {
       return next(err);
     });
-}
-
-function getUserByUserName(req, res, next) {
-    db.func('getClientByUserName', req.params.name, queryResult.one)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retorna um usuário'
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
 }
 
 function getInfos(req, res, next) {
@@ -99,7 +114,7 @@ function getInfo(req, res, next) {
 }
 
 function getLogs(req, res, next) {
-  db.func('getHistsCli', undefined, queryResult.many)
+  db.func('getHistsCli',null, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -115,7 +130,7 @@ function getLogs(req, res, next) {
 
 function getLog(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getHistCli', userID, queryResult.many)
+  db.func('getHistCli',[userID,null], queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -216,10 +231,11 @@ function changeSit(req, res, next) {
 }
 
 module.exports = {
-    login: login,
+    login: login, // feito
+    signup: signup, // feito
   getUsers: getUsers, // feito
   getUser: getUser, // feito
-    getUserByUserName: getUserByUserName, // feito
+    getUserNames: getUserNames, // feito
   changeSit: changeSit, // feito
   getInfos: getInfos, // feito
   getInfo: getInfo, // feito

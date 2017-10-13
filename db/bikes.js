@@ -19,6 +19,20 @@ function getBikes(req, res, next) {
       return next(err);
     });
 }
+function getBikesName(req, res, next) {
+    db.func('getBksName',undefined,queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna o nome de todas as bikes'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
 
 function getBike(req, res, next) {
   var bkID = parseInt(req.params.id);
@@ -95,7 +109,7 @@ function getBikesOffSt(req, res, next) {
 }
 
 function getLogs(req, res, next) {
-    db.func('getHistsBike', undefined, queryResult.many)
+    db.func('getHistsBike', null, queryResult.many)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -112,7 +126,7 @@ function getLogs(req, res, next) {
 
 function getLog(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('getHistBike', bkID, queryResult.many)
+  db.func('getHistBike', [bkID,null], queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -155,7 +169,7 @@ function updateBike(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  db.func('upd_bikeSt',[parseInt(req.param.idbk),parseInt(req.param.idst),parseInt(req.param.nslt)],queryResult.none)
+  db.func('upd_bikeSt',[parseInt(req.param.bk),parseInt(req.param.st),parseInt(req.param.sl)],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
@@ -214,6 +228,7 @@ function changeState(req, res, next) {
 
 module.exports = {
   getBikes: getBikes, // feito
+    getBikesName: getBikesName,
   getBike: getBike, // feito
   getBikesSt: getBikesSt, // feito
   getBikesOnSt: getBikesOnSt, // feito

@@ -19,6 +19,21 @@ function getStations(req, res, next) {
     });
 }
 
+function getStationsName(req, res, next) {
+    db.func('getStsName',undefined,queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: "Retorna o nome de todas as estações"
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
 function getStation(req, res, next) {
   var stID = parseInt(req.params.id);
   db.func('getStation', stID, queryResult.one)
@@ -51,7 +66,7 @@ function getStation(req, res, next) {
 }*/
 
 function getStationLogs(req, res, next) {
-  db.func('getHistsStation',undefined,queryResult.many)
+  db.func('getHistsStation',null,queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -67,7 +82,7 @@ function getStationLogs(req, res, next) {
 
 function getStationLog(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('getHistStation', stID, queryResult.many)
+  db.func('getHistStation', [stID,null], queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
@@ -96,7 +111,7 @@ function createStation(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.senha])
+  db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.senha],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
@@ -167,18 +182,35 @@ function assignSlot(req, res, next) {
     });
 }
 function deassignSlot(req, res, next) {
-  var stID = parseInt(req.params.id);
-  db.func('deassignSlot',stID, queryResult.none)
+  var stID = parseInt(req.params.st);
+  var sl = parseInt(req.params.sl);
+  db.func('deassignSlot',[stID,sl], queryResult.none)
     .then(function (result) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Removeu 1 slot de uma estação'
+          message: 'Removeu o '+ sl +'º slot de uma estação'
         });
     })
     .catch(function (err) {
       return next(err);
     });
+}
+
+function changeSlotState(req, res, next) {
+    var stID = parseInt(req.params.st);
+    var sl = parseInt(req.params.sl);
+    db.func('changeSlotState',[stID,sl], queryResult.none)
+        .then(function (result) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Alterou o estado do '+ sl +'º slot de uma estação'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
 }
 
 function getSlots(req, res, next) {
@@ -199,15 +231,17 @@ function getSlots(req, res, next) {
 
 module.exports = {
   getStations: getStations, // feito
+    getStationsName: getStationsName, // feito
   getStation: getStation, // feito
   changeStationState: changeStationState, // feito
   getStationLogs: getStationLogs, // feito mas não funciona
   getStationLog: getStationLog, // feito
   assignSlot: assignSlot, // feito
   deassignSlot: deassignSlot, // feito
+    changeSlotState: changeSlotState, // feito
   getSlots: getSlots, // feito
   createStation: createStation, // feito
-  updateStation: updateStation,
+  updateStation: updateStation, // feito
   removeStations: removeStations, // feito
   removeStation: removeStation // feito
 };

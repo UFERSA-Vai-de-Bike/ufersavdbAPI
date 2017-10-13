@@ -8,30 +8,97 @@ var queryResult = connector.queryResult;
 
 // add query functions
 
-function getCountOutLogs(req, res, next) {
-  db.func('getCountOutLogs',undefined,queryResult.one)
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retorna a quantidade de empréstimos'
+
+/*function getCountAllLogs(req, res, next) {
+ db.func('getCountAllLogs',null,queryResult.one)
+ .then(function (data) {
+ res.status(200)
+ .json({
+ status: 'success',
+ data: data,
+ message: 'Retorna a quantidade de transações'
+ });
+ })
+ .catch(function (err) {
+ return next(err);
+ });
+ }*/
+
+function getCountAllLogs(req, res, next) {
+    var finished = null;
+    var text = '';
+    if (typeof req.params.fin !== 'undefined') {
+        if (req.params.fin) {
+            finished = true;
+            text = ' concluídas';
+        } else {
+            finished = false;
+            text = ' não concluídas';
+        }
+    }
+    db.func('getCountAllLogs',finished,queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna a quantidade de transações' + text
+                });
+        })
+        .catch(function (err) {
+            return next(err);
         });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
 }
 
-function getOutLogBike(req, res, next) {
+function getCountAllLogsCond(req, res, next) {
+    var finished = parseInt(req.params.fin);
+    var text = '';
+    if (finished === 1) {
+        finished = true;
+        text = ' concluídas';
+    } else if (finished === 0) {
+        finished = false;
+        text = ' não concluídas';
+    } else
+        finished = null;
+    db.func('getCountAllLogs',finished,queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna a quantidade de transações' + text
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+function getAllLogs(req, res, next) {
+    db.func('getvdbLogs',undefined,queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna todas as transações'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+function getLogBk(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('getOutLogBike', bkID, queryResult.many)
+  db.func('getvdbLogsBk', bkID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna os empréstimos de uma bike'
+          message: 'Retorna as transações de uma bike'
         });
     })
     .catch(function (err) {
@@ -39,15 +106,15 @@ function getOutLogBike(req, res, next) {
     });
 }
 
-function getOutLogStation(req, res, next) {
+function getLogSt(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('getOutLogStation', stID, queryResult.many)
+  db.func('getvdbLogsSt', stID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna os empréstimos de uma estação'
+          message: 'Retorna as transações de uma estação'
         });
     })
     .catch(function (err) {
@@ -55,15 +122,15 @@ function getOutLogStation(req, res, next) {
     });
 }
 
-function getOutLogCli(req, res, next) {
+function getLogCli(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getOutLogCli', userID, queryResult.many)
+  db.func('getvdbLogsCli', userID, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna os empréstimos de um usuário'
+          message: 'Retorna as transações de um usuário'
         });
     })
     .catch(function (err) {
@@ -71,72 +138,87 @@ function getOutLogCli(req, res, next) {
     });
 }
 
-function getCountInLogs(req, res, next) {
-  db.func('getCountInLogs',undefined,queryResult.one)
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retorna a quantidade de devoluções'
+function getCountSt(req, res, next) {
+    var finished = null;
+    var text = ' ';
+    if (typeof req.params.fin !== 'undefined') {
+        if (req.params.fin) {
+            finished = true;
+            text = ' concluídas ';
+        } else {
+            finished = false;
+            text = ' não concluídas ';
+        }
+    }
+    db.func('getCountAllLogsSt',[parseInt(req.params.id),finished],queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna a quantidade de transações' + text + 'de uma estação'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
         });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
 }
 
-function getInLogBike(req, res, next) {
-  var bkID = parseInt(req.params.id);
-  db.func('getInLogBike', bkID, queryResult.many)
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retorna as devoluções de uma bike'
+function getCountBk(req, res, next) {
+    var finished = null;
+    var text = '';
+    if (typeof req.params.fin !== 'undefined') {
+        if (req.params.fin) {
+            finished = true;
+            text = ' concluídas ';
+        } else {
+            finished = false;
+            text = ' não concluídas ';
+        }
+    }
+    db.func('getCountAllLogsBk',[parseInt(req.params.id),finished],queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna a quantidade de transações' + text + 'de uma bicicleta'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
         });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
 }
 
-function getInLogStation(req, res, next) {
-  var stID = parseInt(req.params.id);
-  db.func('getInLogStation', stID, queryResult.many)
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retorna as devoluções de uma estação'
+function getCountCli(req, res, next) {
+    var finished = null;
+    var text = '';
+    if (typeof req.params.fin !== 'undefined') {
+        if (req.params.fin) {
+            finished = true;
+            text = ' concluídas ';
+        } else {
+            finished = false;
+            text = ' não concluídas ';
+        }
+    }
+    db.func('getCountAllLogsCli',[parseInt(req.params.id),finished],queryResult.one)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna a quantidade de transações' + text + 'de um cliente'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
         });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
 }
-
-function getInLogCli(req, res, next) {
-  var userID = parseInt(req.params.id);
-  db.func('getInLogCli', userID, queryResult.many)
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retorna as devoluções de um usuário'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
-}
-
 
 function doLoan(req, res, next) {
-  db.func('add_out_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)],queryResult.none)
+  db.func('open_vdb_log',[parseInt(req.params.cli),parseInt(req.params.idbk),parseInt(req.params.st),
+      parseInt(req.params.sl)],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
@@ -150,7 +232,8 @@ function doLoan(req, res, next) {
 }
 
 function doReturn(req, res, next) {
-  db.func('add_in_log',[parseInt(req.body.idst),parseInt(req.body.idbk),parseInt(req.body.nslt)],queryResult.none)
+  db.func('close_vdb_log',[parseInt(req.params.cli),parseInt(req.params.idbk),parseInt(req.params.st),
+      parseInt(req.params.sl)],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
@@ -163,46 +246,17 @@ function doReturn(req, res, next) {
     });
 }
 
-function getOutLogs(req, res, next) {
-    db.func('getOutLogsText',undefined,queryResult.many)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retorna as devoluções'
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
-function getInLogs(req, res, next) {
-    db.func('getInLogsText',undefined,queryResult.many)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retorna os empréstimos'
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
 
 module.exports = {
-	getCountOutLogs: getCountOutLogs, // feito
-	getOutLogs: getOutLogs, // feito
-	getOutLogBike: getOutLogBike, // feito
-	getOutLogStation: getOutLogStation, // feito
-	getOutLogCli: getOutLogCli, // feito
+    getCountAllLogs: getCountAllLogs, // feito
+    getCountAllLogsCond: getCountAllLogsCond,
+    getAllLogs: getAllLogs, // feito
+    getLogBk: getLogBk, // feito
+    getLogSt: getLogSt, // feito
+    getLogCli: getLogCli, // feito
+    getCountBk: getCountBk,
+    getCountSt: getCountSt,
+    getCountCli: getCountCli,
 	doLoan: doLoan, // feito
-	getCountInLogs: getCountInLogs, // feito
-	getInLogs: getInLogs, // feito
-	getInLogBike: getInLogBike, // feito
-	getInLogStation: getInLogStation, // feito
-	getInLogCli: getInLogCli, // feito
-	doReturn: doReturn // feito
+    doReturn: doReturn // feito
 };

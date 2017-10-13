@@ -19,13 +19,15 @@ router.get('/state/:id', db.changeStationState);
 router.get('/log', db.getStationLogs);
 router.get('/log/:id', db.getStationLog);
 
+
 router.get('/slots/:id', db.getSlots);
 router.get('/slot_assign/:id', db.assignSlot);
-router.get('/slot_deassign/:id', db.deassignSlot);
+router.get('/slot_deassign/:st&:sl', db.deassignSlot);
+router.get('/slot_state/:st&:sl', db.changeSlotState);
 
 router.get('/', db.getStations);
+router.get('/n', db.getStationsName);
 router.get('/:id', db.getStation);
-// router.get('/n/:name', db.getStationByName);
 
 router.post('/', db.createStation);
 router.put('/:id', db.updateStation);
