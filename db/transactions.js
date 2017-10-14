@@ -25,49 +25,13 @@ var queryResult = connector.queryResult;
  }*/
 
 function getCountAllLogs(req, res, next) {
-    var finished = null;
-    var text = '';
-    if (typeof req.params.fin !== 'undefined') {
-        if (req.params.fin) {
-            finished = true;
-            text = ' concluídas';
-        } else {
-            finished = false;
-            text = ' não concluídas';
-        }
-    }
-    db.func('getCountAllLogs',finished,queryResult.one)
+    db.func('getCountAllLogs',undefined,queryResult.one)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna a quantidade de transações' + text
-                });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
-
-function getCountAllLogsCond(req, res, next) {
-    var finished = parseInt(req.params.fin);
-    var text = '';
-    if (finished === 1) {
-        finished = true;
-        text = ' concluídas';
-    } else if (finished === 0) {
-        finished = false;
-        text = ' não concluídas';
-    } else
-        finished = null;
-    db.func('getCountAllLogs',finished,queryResult.one)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retorna a quantidade de transações' + text
+                    message: 'Retornou o total de transações'
                 });
         })
         .catch(function (err) {
@@ -82,7 +46,7 @@ function getAllLogs(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna todas as transações'
+                    message: 'Retorou todas as transações'
                 });
         })
         .catch(function (err) {
@@ -98,7 +62,7 @@ function getLogBk(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna as transações de uma bike'
+          message: 'Retornaou as transações de uma bike'
         });
     })
     .catch(function (err) {
@@ -114,7 +78,7 @@ function getLogSt(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna as transações de uma estação'
+          message: 'Retornou as transações de uma estação'
         });
     })
     .catch(function (err) {
@@ -130,7 +94,7 @@ function getLogCli(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna as transações de um usuário'
+          message: 'Retornou as transações de um usuário'
         });
     })
     .catch(function (err) {
@@ -139,24 +103,13 @@ function getLogCli(req, res, next) {
 }
 
 function getCountSt(req, res, next) {
-    var finished = null;
-    var text = ' ';
-    if (typeof req.params.fin !== 'undefined') {
-        if (req.params.fin) {
-            finished = true;
-            text = ' concluídas ';
-        } else {
-            finished = false;
-            text = ' não concluídas ';
-        }
-    }
-    db.func('getCountAllLogsSt',[parseInt(req.params.id),finished],queryResult.one)
+    db.func('getCountAllLogsSt',parseInt(req.params.id),queryResult.one)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna a quantidade de transações' + text + 'de uma estação'
+                    message: 'Retornou o total de transações de uma estação'
                 });
         })
         .catch(function (err) {
@@ -165,24 +118,13 @@ function getCountSt(req, res, next) {
 }
 
 function getCountBk(req, res, next) {
-    var finished = null;
-    var text = '';
-    if (typeof req.params.fin !== 'undefined') {
-        if (req.params.fin) {
-            finished = true;
-            text = ' concluídas ';
-        } else {
-            finished = false;
-            text = ' não concluídas ';
-        }
-    }
-    db.func('getCountAllLogsBk',[parseInt(req.params.id),finished],queryResult.one)
+    db.func('getCountAllLogsBk',parseInt(req.params.id),queryResult.one)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna a quantidade de transações' + text + 'de uma bicicleta'
+                    message: 'Retorna o total de transações de uma bicicleta'
                 });
         })
         .catch(function (err) {
@@ -191,24 +133,13 @@ function getCountBk(req, res, next) {
 }
 
 function getCountCli(req, res, next) {
-    var finished = null;
-    var text = '';
-    if (typeof req.params.fin !== 'undefined') {
-        if (req.params.fin) {
-            finished = true;
-            text = ' concluídas ';
-        } else {
-            finished = false;
-            text = ' não concluídas ';
-        }
-    }
-    db.func('getCountAllLogsCli',[parseInt(req.params.id),finished],queryResult.one)
+    db.func('getCountAllLogsCli',parseInt(req.params.id),queryResult.one)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna a quantidade de transações' + text + 'de um cliente'
+                    message: 'Retornou o total de transações de um cliente'
                 });
         })
         .catch(function (err) {
@@ -249,7 +180,6 @@ function doReturn(req, res, next) {
 
 module.exports = {
     getCountAllLogs: getCountAllLogs, // feito
-    getCountAllLogsCond: getCountAllLogsCond,
     getAllLogs: getAllLogs, // feito
     getLogBk: getLogBk, // feito
     getLogSt: getLogSt, // feito
