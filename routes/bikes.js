@@ -11,7 +11,7 @@ router.get('/station_up/:bk&:st&:sl', db.updateStation);
 router.get('/station_on/:id', db.getBikesOnSt);
 router.get('/station_off/:id', db.getBikesOffSt);
 router.get('/station/:id', db.getBikesSt);
-router.get('/state/:id', db.changeState);
+router.get('/sit/:id', db.changeState);
 
 
 router.get('/', db.getBikes);
