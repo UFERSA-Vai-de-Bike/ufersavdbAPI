@@ -6,7 +6,7 @@ var queryResult = connector.queryResult;
 // add query functions
 
 function login(req, res, next) {
-    db.func('getClientLogin',[req.body.username,req.body.senha], queryResult.one)
+    db.func('getClientLogin',[req.body.username,req.body.password], queryResult.one)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -43,12 +43,27 @@ function getUsers(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna todos os usuários'
+          message: 'Retornou todos os usuários'
         });
     })
     .catch(function (err) {
       return next(err);
     });
+}
+
+function getValUsers(req, res, next) {
+    db.func('getValCli',undefined,queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retornou o id e nome de usuários válidos'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
 }
 
 function getUserNames(req, res, next) {
@@ -58,7 +73,7 @@ function getUserNames(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna o nome de todos os usuário'
+                    message: 'Retornou o nome de todos os usuários'
                 });
         })
         .catch(function (err) {
@@ -74,7 +89,7 @@ function getUser(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna um usuário'
+          message: 'Retornou um usuário'
         });
     })
     .catch(function (err) {
@@ -89,7 +104,7 @@ function getInfos(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna as informações de todos os usuários'
+          message: 'Retornou as informações de todos os usuários'
         });
     })
     .catch(function (err) {
@@ -105,7 +120,7 @@ function getInfo(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna as informações de um usuário'
+          message: 'Retornou as informações de um usuário'
         });
     })
     .catch(function (err) {
@@ -120,7 +135,7 @@ function getLogs(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna o histórico de todos os usuários'
+          message: 'Retornou o histórico de todos os usuários'
         });
     })
     .catch(function (err) {
@@ -136,7 +151,7 @@ function getLog(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna o histórico de um usuário'
+          message: 'Retornou o histórico de um usuário'
         });
     })
     .catch(function (err) {
@@ -159,12 +174,12 @@ function createUser(req, res, next) {
     });
 }
 function updateUser(req, res, next) {
-  db.func('upd_cli',[parseInt(req.bod.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
+  db.func('upd_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
     .then(function () {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Atualizou usuário'
+          message: 'Atualizou um usuário'
         });
     })
     .catch(function (err) {
@@ -178,7 +193,7 @@ function updateUserInfo(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Atualizou usuário'
+          message: 'Atualizou as informações de um usuário'
         });
     })
     .catch(function (err) {
@@ -193,7 +208,7 @@ function removeUser(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Removeu 1 usuário'
+          message: 'Removeu um usuário'
         });
     })
     .catch(function (err) {
@@ -222,7 +237,7 @@ function changeSit(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          message: 'Mudou a situação de 1 usuário'
+          message: 'Mudou a situação de um usuário'
         });
     })
     .catch(function (err) {
@@ -234,6 +249,7 @@ module.exports = {
     login: login, // feito
     signup: signup, // feito
   getUsers: getUsers, // feito
+    getValUsers: getValUsers, // feito
   getUser: getUser, // feito
     getUserNames: getUserNames, // feito
   changeSit: changeSit, // feito

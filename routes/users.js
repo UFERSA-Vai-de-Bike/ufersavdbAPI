@@ -21,16 +21,17 @@ router.get('/log/:id', db.getUserLog);
 
 router.get('/info', db.getInfos);
 router.get('/info/:id', db.getInfo);
-router.post('/info/:id', db.updateUserInfo);
+router.post('/info/', db.updateUserInfo);
 
 router.get('/', db.getUsers);
+router.get('/val', db.getValUsers);
 router.get('/n', db.getUserNames);
 router.get('/:id', db.getUser);
 
 router.post('/', db.createUser);
 router.post('/login',db.login);
 router.post('/signup',db.signup);
-router.put('/:id', db.updateUser);
+router.put('/', db.updateUser);
 router.delete('/', db.removeUsers);
 router.delete('/:id', db.removeUser);
 

@@ -33,6 +33,20 @@ function getStationsName(req, res, next) {
             return next(err);
         });
 }
+function getValSts(req, res, next) {
+    db.func('getValSts',undefined,queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna as estações válidas'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
 
 function getStation(req, res, next) {
   var stID = parseInt(req.params.id);
@@ -232,6 +246,7 @@ function getSlots(req, res, next) {
 module.exports = {
   getStations: getStations, // feito
     getStationsName: getStationsName, // feito
+    getValSts: getValSts,
   getStation: getStation, // feito
   changeStationState: changeStationState, // feito
   getStationLogs: getStationLogs, // feito mas não funciona

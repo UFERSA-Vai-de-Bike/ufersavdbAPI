@@ -33,6 +33,20 @@ function getBikesName(req, res, next) {
             return next(err);
         });
 }
+function getValBks(req, res, next) {
+    db.func('getValBks',undefined,queryResult.many)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retorna o id e nome de bicicletas válidas'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
 
 function getBike(req, res, next) {
   var bkID = parseInt(req.params.id);
@@ -227,18 +241,19 @@ function changeState(req, res, next) {
 }
 
 module.exports = {
-  getBikes: getBikes, // feito
-    getBikesName: getBikesName,
-  getBike: getBike, // feito
-  getBikesSt: getBikesSt, // feito
-  getBikesOnSt: getBikesOnSt, // feito
-  getBikesOffSt: getBikesOffSt, // feito
-  getBikeLogs: getLogs, // feito
-  getBikeLog: getLog, // feito
-  changeState: changeState, // feito
-  updateStation: updateStation, // feito
-  createBike: createBike, // feito
-  updateBike: updateBike, // feito
-  removeBikes: removeBikes, // feito
-  removeBike: removeBike // feito
+    getBikes: getBikes, // feito
+    getBikesName: getBikesName,// feito
+    getValBks: getValBks,
+    getBike: getBike, // feito
+    getBikesSt: getBikesSt, // feito
+    getBikesOnSt: getBikesOnSt, // feito
+    getBikesOffSt: getBikesOffSt, // feito
+    getBikeLogs: getLogs, // feito
+    getBikeLog: getLog, // feito
+    changeState: changeState, // feito
+    updateStation: updateStation, // feito
+    createBike: createBike, // feito
+    updateBike: updateBike, // feito
+    removeBikes: removeBikes, // feito
+    removeBike: removeBike // feito
 };

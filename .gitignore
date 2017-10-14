@@ -97,3 +97,5 @@ GitHub.sublime-settings
 # End of https://www.gitignore.io/api/node,sublimetext
 
 *.sublime-project
+.idea/
+db/connector.js
