@@ -11,11 +11,16 @@ function getStations(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: "Retorna todas as estações"
+          message: "Retornou todas as estações"
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -26,11 +31,16 @@ function getStationsName(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: "Retorna o nome de todas as estações"
+                    message: "Retornou o nome de todas as estações"
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 function getValSts(req, res, next) {
@@ -40,11 +50,16 @@ function getValSts(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna as estações válidas'
+                    message: 'Retornou as estações válidas'
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -56,11 +71,16 @@ function getStation(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna uma estação'
+          message: 'Retornou uma estação'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -71,11 +91,16 @@ function getStation(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna um usuário'
+                    message: 'Retornou um usuário'
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }*/
 
@@ -86,11 +111,16 @@ function getStationLogs(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna o histórico de todas as estações'
+          message: 'Retornou o histórico de todas as estações'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -102,11 +132,16 @@ function getStationLog(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna o histórico de uma estação'
+          message: 'Retornou o histórico de uma estação'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -120,7 +155,12 @@ function createStation(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -134,7 +174,12 @@ function updateStation(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -149,7 +194,12 @@ function removeStations(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -163,7 +213,12 @@ function removeStation(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -178,7 +233,12 @@ function changeStationState(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 function assignSlot(req, res, next) {
@@ -192,7 +252,12 @@ function assignSlot(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 function deassignSlot(req, res, next) {
@@ -207,7 +272,12 @@ function deassignSlot(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -223,7 +293,12 @@ function changeSlotState(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -235,11 +310,16 @@ function getSlots(req, res, next) {
         .json({
           status: 'success',
             data: result,
-          message: 'Retorna os slots de uma estação'
+          message: 'Retornou os slots de uma estação'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 

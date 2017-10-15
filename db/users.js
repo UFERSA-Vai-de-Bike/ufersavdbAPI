@@ -19,6 +19,7 @@ function login(req, res, next) {
             res.status(401)
                 .json({
                     status: 'not authorized',
+                    data: err,
                     message: 'Usuário ou senha inválidos'
                 })
         });
@@ -36,7 +37,12 @@ function signup(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -51,7 +57,12 @@ function getUsers(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -66,7 +77,12 @@ function getValUsers(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -81,7 +97,12 @@ function getUserNames(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -97,7 +118,12 @@ function getUser(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -112,7 +138,12 @@ function getInfos(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -128,7 +159,12 @@ function getInfo(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -143,7 +179,12 @@ function getLogs(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -159,7 +200,12 @@ function getLog(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -174,7 +220,12 @@ function createUser(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 function updateUser(req, res, next) {
@@ -187,7 +238,12 @@ function updateUser(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -201,7 +257,12 @@ function updateUserInfo(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -216,7 +277,12 @@ function removeUser(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -230,7 +296,12 @@ function removeUsers(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 
@@ -245,7 +316,12 @@ function changeSit(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+        res.status(500)
+            .json({
+                status: 'internal server error',
+                data: err,
+                message: 'Erro no servidor'
+            })
     });
 }
 

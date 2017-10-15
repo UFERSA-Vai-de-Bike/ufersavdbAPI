@@ -12,11 +12,16 @@ function getBikes(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna todas as bikes'
+          message: 'Retornou todas as bikes'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 function getBikesName(req, res, next) {
@@ -26,11 +31,16 @@ function getBikesName(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna o nome de todas as bikes'
+                    message: 'Retornou o nome de todas as bikes'
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 function getValBks(req, res, next) {
@@ -40,11 +50,16 @@ function getValBks(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna o id e nome de bicicletas válidas'
+                    message: 'Retornou o id e nome de bicicletas válidas'
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -56,11 +71,16 @@ function getBike(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna uma bike'
+          message: 'Retornou uma bike'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -71,11 +91,16 @@ function getBike(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna um usuário'
+                    message: 'Retornou um usuário'
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }*/
 
@@ -86,11 +111,16 @@ function getBikesSt(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna todas as bikes da estação'
+          message: 'Retornou todas as bikes da estação'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 function getBikesOnSt(req, res, next) {
@@ -100,11 +130,16 @@ function getBikesOnSt(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna todas as bikes que estão na estação'
+          message: 'Retornou todas as bikes que estão na estação'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 function getBikesOffSt(req, res, next) {
@@ -114,11 +149,16 @@ function getBikesOffSt(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna todas as bikes que sairam da estação'
+          message: 'Retornou todas as bikes que sairam da estação'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -129,11 +169,16 @@ function getLogs(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message:  'Retorna o histórico de todas as bikes'
+                    message:  'Retornou o histórico de todas as bikes'
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -146,11 +191,16 @@ function getLog(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retorna o histórico de uma bike'
+          message: 'Retornou o histórico de uma bike'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -164,7 +214,12 @@ function createBike(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -178,7 +233,12 @@ function updateBike(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -192,7 +252,12 @@ function updateStation(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -207,7 +272,12 @@ function removeBikes(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -221,7 +291,12 @@ function removeBike(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -236,7 +311,12 @@ function changeState(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 

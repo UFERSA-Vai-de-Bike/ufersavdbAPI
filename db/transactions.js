@@ -16,11 +16,16 @@ var queryResult = connector.queryResult;
  .json({
  status: 'success',
  data: data,
- message: 'Retorna a quantidade de transações'
+ message: 'Retornou a quantidade de transações'
  });
  })
  .catch(function (err) {
- return next(err);
+ res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
  });
  }*/
 
@@ -35,7 +40,12 @@ function getCountAllLogs(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -50,7 +60,12 @@ function getAllLogs(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -62,11 +77,16 @@ function getLogBk(req, res, next) {
         .json({
           status: 'success',
           data: data,
-          message: 'Retornaou as transações de uma bike'
+          message: 'Retornouou as transações de uma bike'
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -82,7 +102,12 @@ function getLogSt(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -98,7 +123,12 @@ function getLogCli(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -113,7 +143,12 @@ function getCountSt(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -124,11 +159,16 @@ function getCountBk(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorna o total de transações de uma bicicleta'
+                    message: 'Retornou o total de transações de uma bicicleta'
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -143,7 +183,12 @@ function getCountCli(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
         });
 }
 
@@ -158,7 +203,12 @@ function doLoan(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
@@ -173,7 +223,12 @@ function doReturn(req, res, next) {
         });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500)
+                .json({
+                    status: 'internal server error',
+                    data: err,
+                    message: 'Erro no servidor'
+                })
     });
 }
 
