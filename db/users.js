@@ -16,13 +16,17 @@ function login(req, res, next) {
                 });
         })
         .catch(function (err) {
-            return next(err);
+            res.status(401)
+                .json({
+                    status: 'not authorized',
+                    message: 'Usuário ou senha inválidos'
+                })
         });
 }
 
 function signup(req, res, next) {
     db.func('signUpClient',
-        [parseInt(req.body.role),req.body.username,req.body.password,req.body.fullname,req.body.email,req.body.phone,
+        [req.body.username,req.body.password,req.body.fullname,req.body.email,req.body.phone,
             req.body.profession,req.body.sex,req.body.birthdate],queryResult.none)
         .then(function () {
             res.status(200)
