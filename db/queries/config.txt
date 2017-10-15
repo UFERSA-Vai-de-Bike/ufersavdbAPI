@@ -1,0 +1,79 @@
+
+{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "/home/silva/Documentos/UFERSA/ATUAIS/Banco de Dados 1/working"
+        }
+
+    ],
+    "build_systems":
+    [
+    	{
+    		"name": "postgres_bd1_txt",
+    		"cmd": ["psql", "-d", "bd1","-f", "$file", "-o", "/home/silva/Documentos/UFERSA/ATUAIS/Banco de Dados 1/working/results.txt"],
+    		"working_dir" : "/home/silva/Documentos/UFERSA/ATUAIS/Banco de Dados 1/working",
+    		"selector": "source.postgresql"
+		},
+		{
+    		"name": "postgres_ufvdb",
+    		"cmd": ["psql", "-d", "ufersa_vdb_1","-f", "$file"],
+    		"working_dir" : "/home/silva/Documentos/UFERSA/ATUAIS/Banco de Dados 1/working",
+    		"selector": "source.postgresql"
+		}
+    ]
+}
+
+/**
+ * Created by silva on 09/10/17.
+ */
+var promise = require('bluebird');
+var options = {
+    promiseLib: promise
+};
+
+var pgp = require('pg-promise')(options);
+var connectionString = 'postgresql://postgres:admin@localhost:5432/ufersa_vdb_1';
+var db = pgp(connectionString);
+
+var queryResult =  {
+    one: 1,
+    many: 2,
+    none: 4,
+    any: 6
+};
+// add query functions
+
+
+module.exports = {
+    db: db,
+    queryResult: queryResult
+};
+
+
+
+(function(angular){
+    "use strict";
+    angular.module('ufersavdb')
+        .factory('simAPI', simAPIFactory);
+    // SO PARA SIMULAÇÕES
+    simAPIFactory.$inject = ['config','$http']
+    function simAPIFactory(config,$http){
+        var service = {
+            doLoan: _doLoan,
+            doReturn: _doReturn
+        };
+        return service;
+
+        function _doLoan(data) {
+            var params = data.cli + "&" + data.bk + "&" + data.st + "&" + data.sl;
+            $http.get(config.baseUrl + '/transactions/loan/' + params);
+        }
+        function _doReturn(data) {
+            var params = data.cli + "&" + data.bk + "&" + data.st + "&" + data.sl;
+            return $http.get(config.baseUrl + "/transactions/return/" + params); // feito
+        }
+    }
+
+})(angular);
