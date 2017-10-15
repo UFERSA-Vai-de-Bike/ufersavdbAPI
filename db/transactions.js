@@ -50,13 +50,13 @@ function getCountAllLogs(req, res, next) {
 }
 
 function getAllLogs(req, res, next) {
-    db.func('getvdbLogs',undefined,queryResult.one)
+    db.func('getvdbLogs',undefined,queryResult.many)
         .then(function (data) {
             res.status(200)
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retorou todas as transações'
+                    message: 'Retornou todas as transações'
                 });
         })
         .catch(function (err) {
