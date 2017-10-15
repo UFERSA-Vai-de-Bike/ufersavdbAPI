@@ -125,7 +125,7 @@ function createStation(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.senha],queryResult.none)
+  db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -140,7 +140,7 @@ function updateStation(req, res, next) {
 
 function removeStations(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('delStations',stID, queryResult.none)
+  db.func('delStations',stID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -154,7 +154,7 @@ function removeStations(req, res, next) {
 }
 
 function removeStation(req, res, next) {
-  db.func('delStation',undefined,queryResult.none)
+  db.func('delStation',undefined,queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -169,7 +169,7 @@ function removeStation(req, res, next) {
 
 function changeStationState(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('changeStationState',stID, queryResult.none)
+  db.func('changeStationState',stID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -183,7 +183,7 @@ function changeStationState(req, res, next) {
 }
 function assignSlot(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('assignSlot',stID, queryResult.none)
+  db.func('assignSlot',stID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -198,7 +198,7 @@ function assignSlot(req, res, next) {
 function deassignSlot(req, res, next) {
   var stID = parseInt(req.params.st);
   var sl = parseInt(req.params.sl);
-  db.func('deassignSlot',[stID,sl], queryResult.none)
+  db.func('deassignSlot',[stID,sl], queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -214,7 +214,7 @@ function deassignSlot(req, res, next) {
 function changeSlotState(req, res, next) {
     var stID = parseInt(req.params.st);
     var sl = parseInt(req.params.sl);
-    db.func('changeSlotState',[stID,sl], queryResult.none)
+    db.func('changeSlotState',[stID,sl], queryResult.one)
         .then(function (result) {
             res.status(200)
                 .json({

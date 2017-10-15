@@ -149,7 +149,7 @@ function getCountCli(req, res, next) {
 
 function doLoan(req, res, next) {
   db.func('open_vdb_log',[parseInt(req.params.cli),parseInt(req.params.idbk),parseInt(req.params.st),
-      parseInt(req.params.sl)],queryResult.none)
+      parseInt(req.params.sl)],queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -164,7 +164,7 @@ function doLoan(req, res, next) {
 
 function doReturn(req, res, next) {
   db.func('close_vdb_log',[parseInt(req.params.cli),parseInt(req.params.idbk),parseInt(req.params.st),
-      parseInt(req.params.sl)],queryResult.none)
+      parseInt(req.params.sl)],queryResult.one)
     .then(function () {
       res.status(200)
         .json({

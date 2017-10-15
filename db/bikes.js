@@ -155,7 +155,7 @@ function getLog(req, res, next) {
 }
 
 function createBike(req, res, next) {
-  db.func('createBike',req.body.name,queryResult.none)
+  db.func('createBike',req.body.name,queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -169,7 +169,7 @@ function createBike(req, res, next) {
 }
 
 function updateBike(req, res, next) {
-  db.func('upd_bike',[parseInt(req.bod.id),req.body.name],queryResult.none)
+  db.func('upd_bike',[parseInt(req.bod.id),req.body.name],queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -183,7 +183,7 @@ function updateBike(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  db.func('upd_bikeSt',[parseInt(req.param.bk),parseInt(req.param.st),parseInt(req.param.sl)],queryResult.none)
+  db.func('upd_bikeSt',[parseInt(req.param.bk),parseInt(req.param.st),parseInt(req.param.sl)],queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -198,7 +198,7 @@ function updateStation(req, res, next) {
 
 function removeBikes(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('delBikes',bkID, queryResult.none)
+  db.func('delBikes',bkID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -212,7 +212,7 @@ function removeBikes(req, res, next) {
 }
 
 function removeBike(req, res, next) {
-  db.func('delBike',undefined,queryResult.none)
+  db.func('delBike',undefined,queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -227,7 +227,7 @@ function removeBike(req, res, next) {
 
 function changeState(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('changeBikeState',bkID, queryResult.none)
+  db.func('changeBikeState',bkID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({

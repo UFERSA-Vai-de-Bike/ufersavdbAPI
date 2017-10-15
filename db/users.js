@@ -12,7 +12,7 @@ function login(req, res, next) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Login de usuario' + req.body.username + ' efetuado'
+                    message: 'Login de usuario ' + req.body.username + ' efetuado'
                 });
         })
         .catch(function (err) {
@@ -27,7 +27,7 @@ function login(req, res, next) {
 function signup(req, res, next) {
     db.func('signUpClient',
         [req.body.username,req.body.password,req.body.fullname,req.body.email,req.body.phone,
-            req.body.profession,req.body.sex,req.body.birthdate],queryResult.none)
+            req.body.profession,req.body.sex,req.body.birthdate],queryResult.one)
         .then(function () {
             res.status(200)
                 .json({
@@ -165,7 +165,7 @@ function getLog(req, res, next) {
 
 function createUser(req, res, next) {
   db.func('createClient',
-    [parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
+    [parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -178,7 +178,7 @@ function createUser(req, res, next) {
     });
 }
 function updateUser(req, res, next) {
-  db.func('upd_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
+  db.func('upd_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -192,7 +192,7 @@ function updateUser(req, res, next) {
 }
 
 function updateUserInfo(req, res, next) {
-  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.none)
+  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
         .json({
@@ -207,7 +207,7 @@ function updateUserInfo(req, res, next) {
 
 function removeUser(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('delClients',userID, queryResult.none)
+  db.func('delClients',userID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -221,7 +221,7 @@ function removeUser(req, res, next) {
 }
 
 function removeUsers(req, res, next) {
-  db.func('delClients',undefined,queryResult.none)
+  db.func('delClients',undefined,queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
@@ -236,7 +236,7 @@ function removeUsers(req, res, next) {
 
 function changeSit(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('changeSit',userID, queryResult.none)
+  db.func('changeSit',userID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json({
