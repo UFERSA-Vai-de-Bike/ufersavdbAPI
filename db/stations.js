@@ -1,4 +1,5 @@
 var connector = require('./connector');
+var response = require('../response');
 
 var db = connector.db;
 var queryResult = connector.queryResult;
@@ -8,19 +9,10 @@ function getStations(req, res, next) {
   db.func('getStations',undefined,queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: "Retornou todas as estações"
-        });
+        .json(response.success(data, 'Retornou todas as estações'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -28,38 +20,20 @@ function getStationsName(req, res, next) {
     db.func('getStsName',undefined,queryResult.many)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: "Retornou o nome de todas as estações"
-                });
+                .json(response.success(data, 'Retornou o nome de todas as estações'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 function getValSts(req, res, next) {
     db.func('getValSts',undefined,queryResult.many)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou as estações válidas'
-                });
+                .json(response.success(data, 'Retornou as estações válidas'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -68,19 +42,10 @@ function getStation(req, res, next) {
   db.func('getStation', stID, queryResult.one)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou uma estação'
-        });
+        .json(response.success(data, 'Retornou uma estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -108,19 +73,10 @@ function getStationLogs(req, res, next) {
   db.func('getHistsStation',null,queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou o histórico de todas as estações'
-        });
+        .json(response.success(data, 'Retornou o histórico de todas as estações'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -129,19 +85,10 @@ function getStationLog(req, res, next) {
   db.func('getHistStation', [stID,null], queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou o histórico de uma estação'
-        });
+        .json(response.success(data, 'Retornou o histórico de uma estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -149,18 +96,10 @@ function createStation(req, res, next) {
   db.func('createBikeStation',[req.body.name,req.body.senha])
     .then(function () {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Uma estação inserida'
-        });
+        .json(response.success({}, 'Uma estação inserida'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -168,18 +107,10 @@ function updateStation(req, res, next) {
   db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Atualizou uma estação'
-        });
+        .json(response.success({}, 'Atualizou uma estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -188,18 +119,10 @@ function removeStations(req, res, next) {
   db.func('delStations',stID, queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Removeu 1 estação'
-        });
+        .json(response.success({}, 'Removeu 1 estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -207,18 +130,10 @@ function removeStation(req, res, next) {
   db.func('delStation',undefined,queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Removeu ${result.rowCount} estações'
-        });
+        .json(response.success({}, 'Removeu '+result.rowCount+' estações'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -227,18 +142,10 @@ function changeStationState(req, res, next) {
   db.func('changeStationState',stID, queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Mudou o estado de 1 estação'
-        });
+        .json(response.success({}, 'Mudou o estado de 1 estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 function assignSlot(req, res, next) {
@@ -246,18 +153,10 @@ function assignSlot(req, res, next) {
   db.func('assignSlot',stID, queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Adicionou 1 slot a uma estação'
-        });
+        .json(response.success({}, 'Adicionou 1 slot a uma estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 function deassignSlot(req, res, next) {
@@ -266,18 +165,10 @@ function deassignSlot(req, res, next) {
   db.func('deassignSlot',[stID,sl], queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Removeu o '+ sl +'º slot de uma estação'
-        });
+        .json(response.success({}, 'Removeu o '+ sl +'º slot de uma estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
@@ -287,18 +178,10 @@ function changeSlotState(req, res, next) {
     db.func('changeSlotState',[stID,sl], queryResult.one)
         .then(function (result) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    message: 'Alterou o estado do '+ sl +'º slot de uma estação'
-                });
+                .json(response.success({}, 'Alterou o estado do '+ sl +'º slot de uma estação'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+          res.status(500).json(response.failure(err));
         });
 }
 
@@ -307,19 +190,10 @@ function getSlots(req, res, next) {
   db.func('getSlots',stID, queryResult.many)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-            data: result,
-          message: 'Retornou os slots de uma estação'
-        });
+        .json(response.success(result, 'Retornou os slots de uma estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+      res.status(500).json(response.failure(err));
     });
 }
 
