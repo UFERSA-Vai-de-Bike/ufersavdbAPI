@@ -1,4 +1,5 @@
 var connector = require('./connector');
+var response = require('../response');
 
 var db = connector.db;
 var queryResult = connector.queryResult;
@@ -9,19 +10,11 @@ function login(req, res, next) {
     db.func('getClientLogin',[req.body.username,req.body.password], queryResult.one)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Login de usuario ' + req.body.username + ' efetuado'
-                });
+                .json(response.success(data, 'Login de usuario ' + req.body.username + ' efetuado'));
         })
         .catch(function (err) {
             res.status(401)
-                .json({
-                    status: 'not authorized',
-                    data: err,
-                    message: 'Usuário ou senha inválidos'
-                })
+                .json(response.failure(err, 'Usuário ou senha inválidos'));
         });
 }
 
@@ -31,18 +24,10 @@ function signup(req, res, next) {
             req.body.profession,req.body.sex,req.body.birthdate],queryResult.one)
         .then(function () {
             res.status(200)
-                .json({
-                    status: 'success',
-                    message: 'Um usuário cadastrado'
-                });
+                .json(response.success(data, 'Um usuário cadastrado'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -50,19 +35,10 @@ function getUsers(req, res, next) {
   db.func('getClients',undefined,queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou todos os usuários'
-        });
+        .json(response.success(data, 'Retornou todos os usuários'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -70,19 +46,10 @@ function getValUsers(req, res, next) {
     db.func('getValCli',undefined,queryResult.many)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou o id e nome de usuários válidos'
-                });
+                .json(response.success(data, 'Retornou o id e nome de usuários válidos'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -90,19 +57,10 @@ function getUserNames(req, res, next) {
     db.func('getClientsUserName', undefined, queryResult.many)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou o nome de todos os usuários'
-                });
+                .json(response.success(data, 'Retornou o nome de todos os usuários'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -111,19 +69,10 @@ function getUser(req, res, next) {
   db.func('getClient', userID, queryResult.one)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou um usuário'
-        });
+        .json(response.success(data, 'Retornou um usuário'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -131,19 +80,10 @@ function getInfos(req, res, next) {
   db.func('getInfosCli',undefined, queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou as informações de todos os usuários'
-        });
+        .json(response.success(data, 'Retornou as informações de todos os usuários'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -152,19 +92,10 @@ function getInfo(req, res, next) {
   db.func('getInfoCli', userID, queryResult.one)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou as informações de um usuário'
-        });
+        .json(response.success(data, 'Retornou as informações de um usuário'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -172,19 +103,10 @@ function getLogs(req, res, next) {
   db.func('getHistsCli',null, queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou o histórico de todos os usuários'
-        });
+        .json(response.success(data, 'Retornou o histórico de todos os usuários'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -193,19 +115,10 @@ function getLog(req, res, next) {
   db.func('getHistCli',[userID,null], queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou o histórico de um usuário'
-        });
+        .json(response.success(data, 'Retornou o histórico de um usuário'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -214,36 +127,20 @@ function createUser(req, res, next) {
     [parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Um usuário inserido'
-        });
+        .json(response.success({}, 'Um usuário inserido'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 function updateUser(req, res, next) {
   db.func('upd_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Atualizou um usuário'
-        });
+        .json(response.success({}, 'Atualizou um usuário'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -251,18 +148,10 @@ function updateUserInfo(req, res, next) {
   db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
     .then(function () {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Atualizou as informações de um usuário'
-        });
+        .json(response.success({}, 'Atualizou as informações de um usuário'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -271,18 +160,10 @@ function removeUser(req, res, next) {
   db.func('delClients',userID, queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Removeu um usuário'
-        });
+        .json(response.success({}, 'Removeu um usuário'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -290,18 +171,10 @@ function removeUsers(req, res, next) {
   db.func('delClients',undefined,queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Removeu ${result.rowCount} usuários'
-        });
+        .json(response.success({}, 'Removeu '+result.rowCount+' usuários'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -310,18 +183,10 @@ function changeSit(req, res, next) {
   db.func('changeSit',userID, queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Mudou a situação de um usuário'
-        });
+        .json(response.success({}, 'Mudou a situação de um usuário'));
     })
     .catch(function (err) {
-        res.status(500)
-            .json({
-                status: 'internal server error',
-                data: err,
-                message: 'Erro no servidor'
-            })
+        res.status(500).json(response.failure(err));
     });
 }
 

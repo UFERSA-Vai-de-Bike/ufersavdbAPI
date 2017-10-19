@@ -1,4 +1,5 @@
 var connector = require('./connector');
+var response = require('../response');
 
 var db = connector.db;
 var queryResult = connector.queryResult;
@@ -33,19 +34,10 @@ function getCountAllLogs(req, res, next) {
     db.func('getCountAllLogs',undefined,queryResult.one)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou o total de transações'
-                });
+                .json(response.success(data, 'Retornou o total de transações'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -53,19 +45,10 @@ function getAllLogs(req, res, next) {
     db.func('getvdbLogs',undefined,queryResult.many)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou todas as transações'
-                });
+                .json(response.success(data, 'Retornou todas as transações'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -74,19 +57,10 @@ function getLogBk(req, res, next) {
   db.func('getvdbLogsBk', bkID, queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornouou as transações de uma bike'
-        });
+        .json(response.success(data, 'Retornouou as transações de uma bike'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -95,19 +69,10 @@ function getLogSt(req, res, next) {
   db.func('getvdbLogsSt', stID, queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou as transações de uma estação'
-        });
+        .json(response.success(data, 'Retornou as transações de uma estação'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -116,19 +81,10 @@ function getLogCli(req, res, next) {
   db.func('getvdbLogsCli', userID, queryResult.many)
     .then(function (data) {
       res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retornou as transações de um usuário'
-        });
+        .json(response.success(data, 'Retornou as transações de um usuário'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -136,19 +92,10 @@ function getCountSt(req, res, next) {
     db.func('getCountAllLogsSt',parseInt(req.params.id),queryResult.one)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou o total de transações de uma estação'
-                });
+                .json(response.success(data, 'Retornou o total de transações de uma estação'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -156,19 +103,10 @@ function getCountBk(req, res, next) {
     db.func('getCountAllLogsBk',parseInt(req.params.id),queryResult.one)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou o total de transações de uma bicicleta'
-                });
+                .json(response.success(data, 'Retornou o total de transações de uma bicicleta'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -176,19 +114,10 @@ function getCountCli(req, res, next) {
     db.func('getCountAllLogsCli',parseInt(req.params.id),queryResult.one)
         .then(function (data) {
             res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou o total de transações de um cliente'
-                });
+                .json(response.success(data, 'Retornou o total de transações de um cliente'));
         })
         .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+            res.status(500).json(response.failure(err));
         });
 }
 
@@ -197,18 +126,10 @@ function doLoan(req, res, next) {
       parseInt(req.params.sl)],queryResult.one)
     .then(function () {
       res.status(200)
-        .json({
-          status: 'success',
-          message: 'Uma bike foi entregue'
-        });
+        .json(response.success({}, 'Uma bike foi entregue'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+        res.status(500).json(response.failure(err));
     });
 }
 
@@ -216,19 +137,10 @@ function doReturn(req, res, next) {
   db.func('close_vdb_log',[parseInt(req.params.cli),parseInt(req.params.idbk),parseInt(req.params.st),
       parseInt(req.params.sl)],queryResult.one)
     .then(function () {
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'Uma bike foi devolvida'
-        });
+        res.status(200).json(response.success({}, 'Uma bike foi devolvida'));
     })
     .catch(function (err) {
-      res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
+        res.status(500).json(response.failure(err));
     });
 }
 
