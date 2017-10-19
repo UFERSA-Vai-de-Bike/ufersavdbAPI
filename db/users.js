@@ -14,7 +14,7 @@ function login(req, res, next) {
         })
         .catch(function (err) {
             res.status(401)
-                .json(response.failure(err, 'Usuário ou senha inválidos'));
+                .json(response.failure(err, 'Usuário ou password inválidos'));
         });
 }
 
@@ -124,7 +124,7 @@ function getLog(req, res, next) {
 
 function createUser(req, res, next) {
   db.func('createClient',
-    [parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
+    [parseInt(req.body.role),req.body.username,req.body.password],queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Um usuário inserido'));
@@ -134,7 +134,7 @@ function createUser(req, res, next) {
     });
 }
 function updateUser(req, res, next) {
-  db.func('upd_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
+  db.func('upd_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.password],queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou um usuário'));
@@ -145,7 +145,7 @@ function updateUser(req, res, next) {
 }
 
 function updateUserInfo(req, res, next) {
-  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.senha],queryResult.one)
+  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.password],queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou as informações de um usuário'));
@@ -157,7 +157,7 @@ function updateUserInfo(req, res, next) {
 
 function removeUser(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('delClients',userID, queryResult.one)
+  db.func('delClient',userID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu um usuário'));

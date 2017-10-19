@@ -49,26 +49,6 @@ function getStation(req, res, next) {
     });
 }
 
-/*function getUserByUserName(req, res, next) {
-    db.func('getClientByUserName', req.params.name, queryResult.one)
-        .then(function (data) {
-            res.status(200)
-                .json({
-                    status: 'success',
-                    data: data,
-                    message: 'Retornou um usuário'
-                });
-        })
-        .catch(function (err) {
-            res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
-        });
-}*/
-
 function getStationLogs(req, res, next) {
   db.func('getHistsStation',null,queryResult.many)
     .then(function (data) {
@@ -93,7 +73,7 @@ function getStationLog(req, res, next) {
 }
 
 function createStation(req, res, next) {
-  db.func('createBikeStation',[req.body.name,req.body.senha])
+  db.func('createBikeStation',[req.body.name,req.body.password,req.body.lat,req.body.lon])
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Uma estação inserida'));
@@ -104,7 +84,7 @@ function createStation(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.senha],queryResult.one)
+  db.func('upd_bike_station',[parseInt(req.bod.id),req.body.name,req.body.password,req.body.lat,req.body.lon],queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou uma estação'));
@@ -115,8 +95,7 @@ function updateStation(req, res, next) {
 }
 
 function removeStations(req, res, next) {
-  var stID = parseInt(req.params.id);
-  db.func('delStations',stID, queryResult.one)
+  db.func('delStations',undefined, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu 1 estação'));
@@ -127,7 +106,8 @@ function removeStations(req, res, next) {
 }
 
 function removeStation(req, res, next) {
-  db.func('delStation',undefined,queryResult.one)
+    var stID = parseInt(req.params.id);
+  db.func('delStation',stID,queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu '+result.rowCount+' estações'));
