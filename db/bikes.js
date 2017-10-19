@@ -158,7 +158,7 @@ function removeBike(req, res, next) {
   var bkID = parseInt(req.params.id);
   db.func('delBike',bkID, queryResult.one)
     .then(function (result) {
-      res.status(200).json(response.success({}, 'Removeu 1 bike'));
+      res.status(200).json(response.success({}, 'Removeu uma bike'));
     })
     .catch(function (err) {
       res.status(500).json(response.failure(err));
