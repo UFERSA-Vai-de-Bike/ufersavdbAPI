@@ -31,7 +31,7 @@ router.get('/val', db.getValSts);
 router.get('/:id', db.getStation);
 
 router.post('/', db.createStation);
-router.put('/:id', db.updateStation);
+router.put('/', db.updateStation);
 router.delete('/', db.removeStations);
 router.delete('/:id', db.removeStation);
 

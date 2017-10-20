@@ -84,7 +84,7 @@ function createStation(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  db.func('upd_bike_station',[parseInt(req.bod.idstation),req.body.name,req.body.password,req.body.lat,req.body.lon],queryResult.one)
+  db.func('upd_bike_station',[parseInt(req.body.idstation),req.body.name,req.body.password,req.body.lat,req.body.lon,req.body.state],queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou uma estação'));
@@ -107,7 +107,7 @@ function removeStations(req, res, next) {
 
 function removeStation(req, res, next) {
     var stID = parseInt(req.params.id);
-  db.func('delStation',stID,queryResult.one)
+  db.func('delStation',stID,queryResult.many)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu uma estação'));

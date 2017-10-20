@@ -9,7 +9,7 @@ var success = function(data, message) {
 };
 
 var failure = function(error, message) {
-    message = typeof message !== 'undefined' ? message : "Operação bem sucedida";
+    message = typeof message !== 'undefined' ? message : "Operação mal sucedida";
 
     return {
         success: false,
