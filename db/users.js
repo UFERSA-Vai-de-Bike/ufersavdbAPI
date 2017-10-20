@@ -21,10 +21,10 @@ function login(req, res, next) {
 function signup(req, res, next) {
     db.func('signUpClient',
         [req.body.username,req.body.password,req.body.fullname,req.body.email,req.body.phone,
-            req.body.profession,req.body.sex,req.body.birthdate],queryResult.one)
+            req.body.profession,req.body.sex,req.body.birthdate],queryResult.any)
         .then(function () {
             res.status(200)
-                .json(response.success(data, 'Um usuário cadastrado'));
+                .json(response.success({}, 'Um usuário cadastrado'));
         })
         .catch(function (err) {
             res.status(500).json(response.failure(err));
