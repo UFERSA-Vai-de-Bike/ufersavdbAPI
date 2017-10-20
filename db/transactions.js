@@ -9,27 +9,6 @@ var queryResult = connector.queryResult;
 
 // add query functions
 
-
-/*function getCountAllLogs(req, res, next) {
- db.func('getCountAllLogs',null,queryResult.one)
- .then(function (data) {
- res.status(200)
- .json({
- status: 'success',
- data: data,
- message: 'Retornou a quantidade de transações'
- });
- })
- .catch(function (err) {
- res.status(500)
-                .json({
-                    status: 'internal server error',
-                    data: err,
-                    message: 'Erro no servidor'
-                })
- });
- }*/
-
 function getCountAllLogs(req, res, next) {
     db.func('getCountAllLogs',undefined,queryResult.one)
         .then(function (data) {
@@ -87,6 +66,17 @@ function getLogCli(req, res, next) {
         res.status(500).json(response.failure(err));
     });
 }
+function getBikeOfCli(req, res, next) {
+  var bkId = parseInt(req.params.id);
+  db.func('getBikeOfCli', bkId, queryResult.one)
+    .then(function (data) {
+      res.status(200)
+        .json(response.success(data, 'Retorna a bike de um usuário'));
+    })
+    .catch(function (err) {
+        res.status(500).json(response.failure(err));
+    });
+}
 
 function getCountSt(req, res, next) {
     db.func('getCountAllLogsSt',parseInt(req.params.id),queryResult.one)
@@ -122,7 +112,7 @@ function getCountCli(req, res, next) {
 }
 
 function doLoan(req, res, next) {
-  db.func('open_vdb_log',[parseInt(req.params.cli),parseInt(req.params.idbk),parseInt(req.params.st),
+  db.func('open_vdb_log',[parseInt(req.params.cli),parseInt(req.params.bk),parseInt(req.params.st),
       parseInt(req.params.sl)],queryResult.one)
     .then(function () {
       res.status(200)
@@ -134,7 +124,7 @@ function doLoan(req, res, next) {
 }
 
 function doReturn(req, res, next) {
-  db.func('close_vdb_log',[parseInt(req.params.cli),parseInt(req.params.idbk),parseInt(req.params.st),
+  db.func('close_vdb_log',[parseInt(req.params.cli),parseInt(req.params.bk),parseInt(req.params.st),
       parseInt(req.params.sl)],queryResult.one)
     .then(function () {
         res.status(200).json(response.success({}, 'Uma bike foi devolvida'));
@@ -151,6 +141,7 @@ module.exports = {
     getLogBk: getLogBk, // feito
     getLogSt: getLogSt, // feito
     getLogCli: getLogCli, // feito
+    getBikeOfCli: getBikeOfCli,
     getCountBk: getCountBk,
     getCountSt: getCountSt,
     getCountCli: getCountCli,

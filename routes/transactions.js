@@ -7,6 +7,8 @@ router.get('/bk/:id', db.getLogBk);
 router.get('/amount/bk/:id', db.getCountBk);
 router.get('/st/:id', db.getLogSt);
 router.get('/amount/st/:id', db.getCountSt);
+
+router.get('/cli/bk/:id', db.getBikeOfCli);
 router.get('/cli/:id', db.getLogCli);
 router.get('/amount/cli/:id', db.getCountCli);
 
