@@ -20,7 +20,7 @@ router.get('/val', db.getValBks);
 router.get('/:id', db.getBike);
 
 router.post('/', db.createBike);
-router.put('/:id', db.updateBike);
+router.put('/', db.updateBike);
 router.delete('/', db.removeBikes);
 router.delete('/:id', db.removeBike);
 
