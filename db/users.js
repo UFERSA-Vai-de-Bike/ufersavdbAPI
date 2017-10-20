@@ -134,7 +134,8 @@ function createUser(req, res, next) {
     });
 }
 function updateUser(req, res, next) {
-  db.func('upd_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.password],queryResult.one)
+    // PADRONIZAR ID PARA IDCLI PARA DAR MATCH COM O BANCO
+  db.func('upd_cli',[parseInt(req.body.idcli),parseInt(req.body.role),req.body.username,req.body.password],queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou um usuário'));

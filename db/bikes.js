@@ -7,7 +7,7 @@ var queryResult = connector.queryResult;
 // add query functions
 
 function getBikes(req, res, next) {
-  db.func('getBikes',undefined,queryResult.many)
+  db.func('getBikes',undefined,queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou todas as bikes'));
@@ -17,7 +17,7 @@ function getBikes(req, res, next) {
     });
 }
 function getBikesName(req, res, next) {
-    db.func('getBksName',undefined,queryResult.many)
+    db.func('getBksName',undefined,queryResult.any)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou o nome de todas as bikes'));
@@ -27,7 +27,7 @@ function getBikesName(req, res, next) {
         });
 }
 function getValBks(req, res, next) {
-    db.func('getValBks',undefined,queryResult.many)
+    db.func('getValBks',undefined,queryResult.any)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou o ID e o nome de bicicletas válidas'));
@@ -70,7 +70,7 @@ function getBike(req, res, next) {
 }*/
 
 function getBikesSt(req, res, next) {
-  db.func('getBikesSt',parseInt(req.params.id),queryResult.many)
+  db.func('getBikesSt',parseInt(req.params.id),queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou todas as bikes da estação'));
@@ -80,7 +80,7 @@ function getBikesSt(req, res, next) {
     });
 }
 function getBikesOnSt(req, res, next) {
-  db.func('getBikesOnSt',parseInt(req.params.id),queryResult.many)
+  db.func('getBikesOnSt',parseInt(req.params.id),queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou todas as bikes que estão na estação'));
@@ -90,7 +90,7 @@ function getBikesOnSt(req, res, next) {
     });
 }
 function getBikesOffSt(req, res, next) {
-  db.func('getBikesOffSt',parseInt(req.params.id),queryResult.many)
+  db.func('getBikesOffSt',parseInt(req.params.id),queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou todas as bikes que sairam da estação'));
@@ -101,7 +101,7 @@ function getBikesOffSt(req, res, next) {
 }
 
 function getLogs(req, res, next) {
-    db.func('getHistsBike', null, queryResult.many)
+    db.func('getHistsBike', null, queryResult.any)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou o histórico de todas as bikes'));
@@ -114,7 +114,7 @@ function getLogs(req, res, next) {
 
 function getLog(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('getHistBike', [bkID,null], queryResult.many)
+  db.func('getHistBike', [bkID,null], queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou o histórico de uma bike'));
@@ -135,7 +135,7 @@ function createBike(req, res, next) {
 }
 
 function updateBike(req, res, next) {
-  db.func('upd_bike',[parseInt(req.bod.id),req.body.name],queryResult.one)
+  db.func('upd_bike',[parseInt(req.body.idbike),req.body.name,req.body.state],queryResult.any)
     .then(function () {
       res.status(200).json(response.success({}, 'Atualizou uma bike'));
     })

@@ -42,7 +42,7 @@ function getCountAllLogs(req, res, next) {
 }
 
 function getAllLogs(req, res, next) {
-    db.func('getvdbLogs',undefined,queryResult.many)
+    db.func('getvdbLogs',undefined,queryResult.any)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou todas as transações'));
@@ -54,7 +54,7 @@ function getAllLogs(req, res, next) {
 
 function getLogBk(req, res, next) {
   var bkID = parseInt(req.params.id);
-  db.func('getvdbLogsBk', bkID, queryResult.many)
+  db.func('getvdbLogsBk', bkID, queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornouou as transações de uma bike'));
@@ -66,7 +66,7 @@ function getLogBk(req, res, next) {
 
 function getLogSt(req, res, next) {
   var stID = parseInt(req.params.id);
-  db.func('getvdbLogsSt', stID, queryResult.many)
+  db.func('getvdbLogsSt', stID, queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou as transações de uma estação'));
@@ -78,7 +78,7 @@ function getLogSt(req, res, next) {
 
 function getLogCli(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getvdbLogsCli', userID, queryResult.many)
+  db.func('getvdbLogsCli', userID, queryResult.any)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou as transações de um usuário'));
