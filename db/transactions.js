@@ -56,15 +56,15 @@ function getLogSt(req, res, next) {
 }
 
 function getLogCli(req, res, next) {
-  var userID = parseInt(req.params.id);
-  db.func('getvdbLogsCli', userID, queryResult.any)
-    .then(function (data) {
-      res.status(200)
-        .json(response.success(data, 'Retornou as transações de um usuário'));
-    })
-    .catch(function (err) {
-        res.status(500).json(response.failure(err));
-    });
+    var userID = parseInt(req.params.id);
+    db.func('getvdbLogsCli', userID, queryResult.any)
+        .then(function (data) {
+            res.status(200)
+                .json(response.success(data, 'Retornou as transações de um usuário'));
+        })
+        .catch(function (err) {
+            res.status(500).json(response.failure(err));
+        });
 }
 function getBikeOfCli(req, res, next) {
   var bkId = parseInt(req.params.id);

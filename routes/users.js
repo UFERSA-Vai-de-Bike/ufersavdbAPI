@@ -21,7 +21,7 @@ router.get('/log/:id', db.getUserLog);
 
 router.get('/info', db.getInfos);
 router.get('/info/:id', db.getInfo);
-router.post('/info/', db.updateUserInfo);
+router.post('/info', db.updateUserInfo);
 
 router.get('/', db.getUsers);
 router.get('/val', db.getValUsers);

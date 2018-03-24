@@ -1,0 +1,156 @@
+{
+	"variables": [],
+	"info": {
+		"name": "UFERSA Vai de Bike API",
+		"_postman_id": "6e6166bf-e01a-9409-ad1f-0334a14e035b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER",
+			"description": "",
+			"item": [
+				{
+					"name": "POST",
+					"description": "",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"url": "localhost:3000/api/users/login",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"amanhaeuvou\",\n\t\"password\": \"seeuperderessetrem\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Usuário",
+							"request": {
+								"url": "localhost:3000/api/users",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"role\": 0,\n\t\"username\": \"amanhaeuvou\",\n\t\"password\": \"seeuperderessetrem\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "SignUp",
+							"request": {
+								"url": "http://localhost:3000/api/users/signup",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\":\"aleluiaa\",\n\t\"password\":\"amanhaeuvou\",\n\t\"passRepeat\":\"amanhaeuvou\",\n\t\"fullname\":\"Aleluia melo\",\n\t\"sex\":\"F\",\n\t\"profession\":\"Vagaba\",\n\t\"email\":\"arthur.alves@ufersa.edu.br\",\"phone\":\"99976-8606\",\"birthdate\":\"2017-10-09T03:00:00.000Z\"\n\t\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "STATION",
+			"description": "",
+			"item": [
+				{
+					"name": "Slot",
+					"description": "",
+					"item": [
+						{
+							"name": "GetSlot",
+							"request": {
+								"url": "http://localhost:3000/api/stations/slots/1",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Criar Estação",
+					"request": {
+						"url": "localhost:3000/api/stations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"amelindija\",\n\t\"password\": \"ohmeudeus99\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TRANSACTIONS",
+			"description": "",
+			"item": [
+				{
+					"name": "Empréstimo",
+					"request": {
+						"url": "http://localhost:3000/api/transactions/return/1&1&2&1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Fazendo um empréstimo"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Boas vindas",
+			"request": {
+				"url": "localhost:3000/api/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

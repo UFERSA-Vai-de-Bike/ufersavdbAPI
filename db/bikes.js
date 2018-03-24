@@ -27,7 +27,7 @@ function getBikesName(req, res, next) {
         });
 }
 function getValBks(req, res, next) {
-    db.func('getValBks',undefined,queryResult.any)
+    db.func('getOpBikes',undefined,queryResult.any)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou o ID e o nome de bicicletas válidas'));
@@ -145,9 +145,9 @@ function updateBike(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  db.func('upd_bikeSt',[parseInt(req.param.bk),parseInt(req.param.st),parseInt(req.param.sl)],queryResult.one)
+  db.func('upd_bikeSt',[parseInt(req.params.bk),parseInt(req.params.st),parseInt(req.params.sl)],queryResult.one)
     .then(function () {
-      res.status(200).json(response.success({}, 'Atualizou uma bike'));
+      res.status(200).json(response.success({}, 'Atualizou a estação de uma bike'));
     })
     .catch(function (err) {
       res.status(500).json(response.failure(err));

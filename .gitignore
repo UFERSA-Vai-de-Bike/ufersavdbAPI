@@ -98,4 +98,3 @@ GitHub.sublime-settings
 
 *.sublime-project
 .idea/
-db/connector.js

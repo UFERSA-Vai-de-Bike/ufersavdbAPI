@@ -146,7 +146,9 @@ function updateUser(req, res, next) {
 }
 
 function updateUserInfo(req, res, next) {
-  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.role),req.body.username,req.body.password],queryResult.one)
+  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.fullname),
+      req.body.email,req.body.phone,req.body.profession,req.body.sex,
+      req.body.birthdate],queryResult.any)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou as informações de um usuário'));
