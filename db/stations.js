@@ -29,7 +29,7 @@ function getStationsName(req, res, next) {
 // INFELIZMENTE a única situação em que não deu pra ser uma função
 // Esse array_agg retorna um RECORD e pseudotypes não podem ser usados em functions
 function getValSts(req, res, next) {
-    db.any("select st.idStation, st.name, st.lat,st.lon,  json_agg((ss.slot, ss.state, ss.bike)) as slots from bike_station as st, station_slot as ss where ss.idStation = st.idStation GROUP BY st.idStation;")
+    db.any("select st.idStation, st.name, st.lat, st.lon, json_agg((ss.slot, ss.state, ss.bike)) as slots from bike_station as st, station_slot as ss where ss.idStation = st.idStation AND st.state = TRUE GROUP BY st.idStation;")
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou informações válidas de estações válidas'));
