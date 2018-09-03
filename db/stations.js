@@ -26,11 +26,13 @@ function getStationsName(req, res, next) {
             res.status(500).json(response.failure(err));
         });
 }
+// INFELIZMENTE a única situação em que não deu pra ser uma função
+// Esse array_agg retorna um RECORD e pseudotypes não podem ser usados em functions
 function getValSts(req, res, next) {
-    db.func('getValSts',undefined,queryResult.many)
+    db.any("select st.idStation, st.name, st.lat,st.lon,  json_agg((ss.slot, ss.state, ss.bike)) as slots from bike_station as st, station_slot as ss where ss.idStation = st.idStation GROUP BY st.idStation;")
         .then(function (data) {
             res.status(200)
-                .json(response.success(data, 'Retornou as estações válidas'));
+                .json(response.success(data, 'Retornou informações válidas de estações válidas'));
         })
         .catch(function (err) {
             res.status(500).json(response.failure(err));

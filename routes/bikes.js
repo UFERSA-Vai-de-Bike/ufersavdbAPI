@@ -14,9 +14,9 @@ router.get('/station/:id', db.getBikesSt);
 router.get('/sit/:id', db.changeState);
 
 
-router.get('/', db.getBikes);
 router.get('/n', db.getBikesName);
 router.get('/val', db.getValBks);
+router.get('/onride', db.getOnRideBikes);
 router.get('/:id', db.getBike);
 
 router.post('/', db.createBike);

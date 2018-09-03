@@ -16,6 +16,17 @@ function getBikes(req, res, next) {
       res.status(500).json(response.failure(err));
     });
 }
+
+function getOnRideBikes(req, res, next) {
+  db.func('getOnRideBikes',undefined,queryResult.any)
+    .then(function (data) {
+      res.status(200)
+        .json(response.success(data, 'Retornou todas as bikes cedidas'));
+    })
+    .catch(function (err) {
+      res.status(500).json(response.failure(err));
+    });
+}
 function getBikesName(req, res, next) {
     db.func('getBksName',undefined,queryResult.any)
         .then(function (data) {
@@ -188,6 +199,7 @@ function changeState(req, res, next) {
 
 module.exports = {
     getBikes: getBikes, // feito
+    getOnRideBikes: getOnRideBikes, // feito
     getBikesName: getBikesName,// feito
     getValBks: getValBks,
     getBike: getBike, // feito
