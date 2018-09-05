@@ -3,6 +3,7 @@
 // ==================================
 
 var express = require('express');
+var cors = require('cors')
 var app = express();
 var bodyparser = require('body-parser');
 var morgan = require('morgan');
@@ -22,6 +23,7 @@ app.use(bodyparser.json());
 // usando morgan para fazer log das requisições no console
 app.use(morgan('dev'));
 
+app.use(cors());
 // ==================================
 // rotas ============================
 // ==================================

@@ -4,6 +4,7 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.1",
+    "cors": "^2.8.4",
     "debug": "~2.6.3",
     "express": "^4.15.4",
     "git": "^0.1.5",
