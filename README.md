@@ -2,6 +2,10 @@
 
 Aplicação Javascript utilizando NodeJs e ExpressJs serve de backend para o projeto e sistema de bicicletas compartilhadas UFERSA Vai de Bike.
 
+## Referências 
+
+[Designing a RESTful API with Node and Postgres](https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
+
 # Contribuindo
 
 Ao contribuir com este repositório, por favor, discuta primeiro a mudança que você deseja fazer via *issue*, e-mail ou qualquer outro método com os proprietários deste repositório antes de fazer uma alteração.
