@@ -7,7 +7,7 @@ var queryResult = connector.queryResult;
 // add query functions
 
 function login(req, res, next) {
-    db.func('getClientLogin',[req.body.username,req.body.password], queryResult.one)
+    return db.func('getClientLogin',[req.body.username,req.body.password], queryResult.one)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Login de usuario ' + req.body.username + ' efetuado'));
@@ -19,7 +19,7 @@ function login(req, res, next) {
 }
 
 function signup(req, res, next) {
-    db.func('signUpClient',
+    return db.func('signUpClient',
         [req.body.username,req.body.password,req.body.fullname,req.body.email,req.body.phone,
             req.body.profession,req.body.sex,req.body.birthdate],queryResult.any)
         .then(function () {
@@ -32,7 +32,7 @@ function signup(req, res, next) {
 }
 
 function getUsers(req, res, next) {
-  db.func('getClients',undefined,queryResult.many)
+  return db.func('getClients',undefined,queryResult.many)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou todos os usuários'));
@@ -43,7 +43,7 @@ function getUsers(req, res, next) {
 }
 
 function getValUsers(req, res, next) {
-    db.func('getValCli',undefined,queryResult.many)
+    return db.func('getValCli',undefined,queryResult.many)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou o id e nome de usuários válidos'));
@@ -54,7 +54,7 @@ function getValUsers(req, res, next) {
 }
 
 function getUserNames(req, res, next) {
-    db.func('getClientsUserName', undefined, queryResult.many)
+    return db.func('getClientsUserName', undefined, queryResult.many)
         .then(function (data) {
             res.status(200)
                 .json(response.success(data, 'Retornou o nome de todos os usuários'));
@@ -66,7 +66,7 @@ function getUserNames(req, res, next) {
 
 function getUser(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getClient', userID, queryResult.one)
+  return db.func('getClient', userID, queryResult.one)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou um usuário'));
@@ -77,7 +77,7 @@ function getUser(req, res, next) {
 }
 
 function getInfos(req, res, next) {
-  db.func('getInfosCli',undefined, queryResult.many)
+  return db.func('getInfosCli',undefined, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou as informações de todos os usuários'));
@@ -89,7 +89,7 @@ function getInfos(req, res, next) {
 
 function getInfo(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getInfoCli', userID, queryResult.one)
+  return db.func('getInfoCli', userID, queryResult.one)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou as informações de um usuário'));
@@ -100,7 +100,7 @@ function getInfo(req, res, next) {
 }
 
 function getLogs(req, res, next) {
-  db.func('getHistsCli',null, queryResult.many)
+  return db.func('getHistsCli',null, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou o histórico de todos os usuários'));
@@ -112,7 +112,7 @@ function getLogs(req, res, next) {
 
 function getLog(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('getHistCli',[userID,null], queryResult.many)
+  return db.func('getHistCli',[userID,null], queryResult.many)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou o histórico de um usuário'));
@@ -123,7 +123,7 @@ function getLog(req, res, next) {
 }
 
 function createUser(req, res, next) {
-  db.func('createClient',
+  return db.func('createClient',
     [parseInt(req.body.role),req.body.username,req.body.password],queryResult.one)
     .then(function () {
       res.status(200)
@@ -135,7 +135,7 @@ function createUser(req, res, next) {
 }
 function updateUser(req, res, next) {
     // PADRONIZAR ID PARA IDCLI PARA DAR MATCH COM O BANCO
-  db.func('upd_cli',[parseInt(req.body.idcli),parseInt(req.body.role),req.body.username,req.body.password,req.body.state],queryResult.one)
+  return db.func('upd_cli',[parseInt(req.body.idcli),parseInt(req.body.role),req.body.username,req.body.password,req.body.state],queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou um usuário'));
@@ -146,7 +146,7 @@ function updateUser(req, res, next) {
 }
 
 function updateUserInfo(req, res, next) {
-  db.func('upd_info_cli',[parseInt(req.body.id),parseInt(req.body.fullname),
+  return db.func('upd_info_cli',[parseInt(req.body.id), req.body.fullname,
       req.body.email,req.body.phone,req.body.profession,req.body.sex,
       req.body.birthdate],queryResult.any)
     .then(function () {
@@ -160,7 +160,7 @@ function updateUserInfo(req, res, next) {
 
 function removeUser(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('delClient',userID, queryResult.one)
+ return  db.func('delClient',userID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu um usuário'));
@@ -171,7 +171,7 @@ function removeUser(req, res, next) {
 }
 
 function removeUsers(req, res, next) {
-  db.func('delClients',undefined,queryResult.one)
+  return db.func('delClients',undefined,queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu '+result.rowCount+' usuários'));
@@ -183,7 +183,7 @@ function removeUsers(req, res, next) {
 
 function changeSit(req, res, next) {
   var userID = parseInt(req.params.id);
-  db.func('changeSit',userID, queryResult.one)
+  return db.func('changeSit',userID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Mudou a situação de um usuário'));
