@@ -1,4 +1,4 @@
-# ufersavdbAPI
+# ufersavdbAPI [![Build Status](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI.svg?branch=master)](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI)
 
 Aplicação Javascript utilizando NodeJs e ExpressJs serve de backend para o projeto e sistema de bicicletas compartilhadas UFERSA Vai de Bike.
 
