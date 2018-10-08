@@ -6,6 +6,7 @@
     "body-parser": "^1.18.1",
     "cors": "^2.8.4",
     "debug": "~2.6.3",
+    "dotenv": "^6.0.0",
     "express": "^4.15.4",
     "git": "^0.1.5",
     "http-server": "^0.11.1",
@@ -14,7 +15,9 @@
     "morgan": "^1.8.2",
     "nodemon": "^1.12.1",
     "npm": "^5.4.2",
-    "pg-promise": "^6.10.2"
+    "pg-promise": "^6.10.2",
+    "sequelize": "^4.39.0",
+    "sequelize-cli": "^4.1.1"
   },
   "description": "Aplicação Javascript utilizando NodeJs e ExpressJs.",
   "version": "1.1.0",
@@ -24,7 +27,8 @@
     "jest": "jest",
     "coverage": "http-server ./coverage/lcov-report -o",
     "start": "nodemon ./bin/www",
-    "start:debug": "DEBUG=express:* nodemon ./bin/www"
+    "start:debug": "DEBUG=express:* nodemon ./bin/www",
+    "sequelize": "sequelize"
   },
   "repository": {
     "type": "git",
