@@ -8,6 +8,8 @@
     "debug": "~2.6.3",
     "express": "^4.15.4",
     "git": "^0.1.5",
+    "http-server": "^0.11.1",
+    "jest": "^23.6.0",
     "jsonwebtoken": "^8.0.1",
     "morgan": "^1.8.2",
     "nodemon": "^1.12.1",
@@ -15,10 +17,12 @@
     "pg-promise": "^6.10.2"
   },
   "description": "Aplicação Javascript utilizando NodeJs e ExpressJs.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run jest",
+    "jest": "jest",
+    "coverage": "http-server ./coverage/lcov-report -o",
     "start": "nodemon ./bin/www",
     "start:debug": "DEBUG=express:* nodemon ./bin/www"
   },
