@@ -2,13 +2,13 @@
 
 Aplicação Javascript utilizando NodeJs e ExpressJs serve de backend para o projeto e sistema de bicicletas compartilhadas UFERSA Vai de Bike.
 
-## Referências 
+## Referências
 
 [Designing a RESTful API with Node and Postgres](https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
 
 # Contribuindo
 
-Ao contribuir com este repositório, por favor, discuta primeiro a mudança que você deseja fazer via *issue*, e-mail ou qualquer outro método com os proprietários deste repositório antes de fazer uma alteração.
+Ao contribuir com este repositório, por favor, discuta primeiro a mudança que você deseja fazer via _issue_, e-mail ou qualquer outro método com os proprietários deste repositório antes de fazer uma alteração.
 
 Por favor, note que temos um código de conduta, por favor, siga-o em todas as suas interações com o projeto.
 
@@ -22,19 +22,19 @@ No interesse de promover um ambiente aberto e acolhedor, nós, como colaboradore
 
 Exemplos de comportamento que contribuem para criar um ambiente positivo incluem:
 
-* Usando linguagem acolhedora e inclusiva
-* Ser respeitoso com pontos de vista e experiências diferentes
-* Graciosamente aceitando críticas construtivas
-* Concentrando-se no que é melhor para a comunidade
-* Mostrando empatia em relação a outros membros da comunidade
+- Usando linguagem acolhedora e inclusiva
+- Ser respeitoso com pontos de vista e experiências diferentes
+- Graciosamente aceitando críticas construtivas
+- Concentrando-se no que é melhor para a comunidade
+- Mostrando empatia em relação a outros membros da comunidade
 
 Exemplos de comportamento inaceitável pelos participantes incluem:
 
-* O uso de linguagem ou imagens sexualizadas e atenção sexual indesejada ou avanços
-* Trolling, insultos / comentários depreciativos e ataques pessoais ou políticos
-* Assédio público ou privado
-* Publicação de informações privadas de outras pessoas, como endereço físico ou eletrônico, sem permissão explícita
-* Outra conduta que poderia razoavelmente ser considerada inadequada em um ambiente profissional
+- O uso de linguagem ou imagens sexualizadas e atenção sexual indesejada ou avanços
+- Trolling, insultos / comentários depreciativos e ataques pessoais ou políticos
+- Assédio público ou privado
+- Publicação de informações privadas de outras pessoas, como endereço físico ou eletrônico, sem permissão explícita
+- Outra conduta que poderia razoavelmente ser considerada inadequada em um ambiente profissional
 
 ### Nossas Responsabilidades
 
@@ -53,4 +53,11 @@ Instâncias de comportamento abusivo, ofensivo ou inaceitável podem ser relatad
 Os mantenedores do projeto que não seguem ou aplicam o Código de Conduta de boa fé podem enfrentar repercussões temporárias ou permanentes, conforme determinado por outros membros da liderança do projeto.
 
 ### Atribuição
+
 Este Código de Conduta é adaptado do Pacto do Colaborador, versão 1.4, disponível em http://contributor-covenant.org/version/1/4
+
+## Iniciando o Projeto
+
+Para iniciar o projeto, basta definir um arquivo ``` .env` `` na pasta raíz, semelhante ao arquivo .env-example. Contendo as variáveis para conexão ao banco da aplicação.
+
+Em seguida basta rodar o comando ```npm start```.

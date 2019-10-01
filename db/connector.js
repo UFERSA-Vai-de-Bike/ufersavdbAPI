@@ -7,7 +7,11 @@ const options = {
 };
 
 const pgp = require('pg-promise')(options);
-const connectionString = 'postgresql://postgres:admin@localhost:5432/ufersa_vdb_1';
+
+const { DB_DATABASE, DB_HOST, DB_PASS, DB_PORT, DB_USER } = process.env;
+
+const connectionString = `postgresql://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`;
+
 const db = pgp(connectionString);
 
 const queryResult =  {
@@ -18,8 +22,7 @@ const queryResult =  {
 };
 // add query functions
 
-
 module.exports = {
-    db: db,
-    queryResult: queryResult
+  db: db,
+  queryResult: queryResult
 };
