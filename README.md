@@ -54,3 +54,8 @@ Os mantenedores do projeto que não seguem ou aplicam o Código de Conduta de bo
 
 ### Atribuição
 Este Código de Conduta é adaptado do Pacto do Colaborador, versão 1.4, disponível em http://contributor-covenant.org/version/1/4
+
+
+### Documentação
+Este projeto utiliza Swagger para gerar a sua documentação e também como ferramenta de auxílio para utilização dos endpoints. 
+A interface do Swagger está disponível em http://localhost:3000/api-docs
