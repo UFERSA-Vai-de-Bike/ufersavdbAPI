@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var db = require('../db/users');
+const db = require('../db/users');
 
 /* A ORDEM DA DECLARAÇÃO IMPORTA
 *
@@ -135,6 +135,5 @@ router.delete('/', db.removeUsers);
  *      description: Remove a specific user
  */
 router.delete('/:id', db.removeUser);
-
 
 module.exports = router;

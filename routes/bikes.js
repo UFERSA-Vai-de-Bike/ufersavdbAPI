@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var db = require('../db/bikes');
-
-
+const db = require('../db/bikes');
 
 router.get('/log', db.getBikeLogs);
 router.get('/log/:id', db.getBikeLog);
@@ -12,7 +10,6 @@ router.get('/station_on/:id', db.getBikesOnSt);
 router.get('/station_off/:id', db.getBikesOffSt);
 router.get('/station/:id', db.getBikesSt);
 router.get('/sit/:id', db.changeState);
-
 
 router.get('/n', db.getBikesName);
 router.get('/val', db.getValBks);

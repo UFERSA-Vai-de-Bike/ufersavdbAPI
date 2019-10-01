@@ -1,24 +1,16 @@
-var success = function(data, message) {
-    message = typeof message !== 'undefined' ? message : "Operação bem sucedida";
+const success = (data, message = 'Operação bem sucedida') => ({
+    success: true,
+    data,
+    message
+})
 
-    return {
-        success: true,
-        data: data,
-        message: message
-    };
-};
-
-var failure = function(error, message) {
-    message = typeof message !== 'undefined' ? message : "Operação mal sucedida";
-
-    return {
-        success: false,
-        data: error,
-        message: message
-    };
-};
+const failure = (error, message = 'Operação mal sucedida') => ({
+    success: false,
+    data: error,
+    message
+})
 
 module.exports = {
-    success: success,
-    failure: failure
-};
+    success,
+    failure
+}

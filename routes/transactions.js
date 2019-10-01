@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var db = require('../db/transactions');
+const db = require('../db/transactions');
 
 router.get('/bk/:id', db.getLogBk);
 router.get('/amount/bk/:id', db.getCountBk);
@@ -17,7 +17,5 @@ router.get('/return/:cli&:bk&:st&:sl', db.doReturn);
 
 router.get('/', db.getAllLogs);
 router.get('/amount', db.getCountAllLogs);
-
-
 
 module.exports = router;

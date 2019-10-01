@@ -86,7 +86,7 @@ describe('Bike', () => {
   describe('getOnRideBikes', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      
+
       await getOnRideBikes(reqMock, resMock);
 
       expect(connector.db.func).toBeCalledWith('getOnRideBikes', undefined, 6);
@@ -173,7 +173,7 @@ describe('Bike', () => {
   describe('getBike', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         id: 1234,
       };
 
@@ -205,7 +205,7 @@ describe('Bike', () => {
   describe('getBikesSt', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         id: '1234',
       };
 
@@ -237,7 +237,7 @@ describe('Bike', () => {
   describe('getBikesOnSt', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         id: '1234',
       };
 
@@ -269,7 +269,7 @@ describe('Bike', () => {
   describe('getBikesOffSt', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         id: '1234',
       };
 
@@ -330,7 +330,7 @@ describe('Bike', () => {
   describe('getBikeLog', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         id: '1234',
       };
 
@@ -362,7 +362,7 @@ describe('Bike', () => {
   describe('createBike', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.body ={
+      reqMock.body = {
         name: 'David',
       };
 
@@ -394,7 +394,7 @@ describe('Bike', () => {
   describe('updateBike', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.body ={
+      reqMock.body = {
         idbike: '1234',
         name: 'David',
         state: 'ok',
@@ -428,7 +428,7 @@ describe('Bike', () => {
   describe('updateStation', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         bk: '1234',
         st: '5678',
         sl: '91011',
@@ -462,7 +462,7 @@ describe('Bike', () => {
   describe('removeBike', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         id: '1234',
       };
 
@@ -496,7 +496,7 @@ describe('Bike', () => {
       connector.db.func.mockResolvedValueOnce({
         rowCount: 5678
       });
-      reqMock.params ={
+      reqMock.params = {
         id: '1234',
       };
 
@@ -528,7 +528,7 @@ describe('Bike', () => {
   describe('changeState', () => {
     it('should send the success content', async () => {
       connector.db.func.mockResolvedValueOnce('legal');
-      reqMock.params ={
+      reqMock.params = {
         id: '1234',
       };
 
