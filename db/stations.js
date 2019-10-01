@@ -1,12 +1,12 @@
-var connector = require('./connector');
-var response = require('../response');
+const connector = require('./connector');
+const response = require('../response');
 
-var db = connector.db;
-var queryResult = connector.queryResult;
+const db = connector.db;
+const queryResult = connector.queryResult;
 
 
 function getStations(req, res, next) {
-  return db.func('getStations',undefined,queryResult.many)
+  return db.func('getStations', undefined, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou todas as estações'));
@@ -17,30 +17,30 @@ function getStations(req, res, next) {
 }
 
 function getStationsName(req, res, next) {
-    return db.func('getStsName',undefined,queryResult.many)
-        .then(function (data) {
-            res.status(200)
-                .json(response.success(data, 'Retornou o nome de todas as estações'));
-        })
-        .catch(function (err) {
-            res.status(500).json(response.failure(err));
-        });
+  return db.func('getStsName', undefined, queryResult.many)
+    .then(function (data) {
+      res.status(200)
+        .json(response.success(data, 'Retornou o nome de todas as estações'));
+    })
+    .catch(function (err) {
+      res.status(500).json(response.failure(err));
+    });
 }
 // INFELIZMENTE a única situação em que não deu pra ser uma função
 // Esse array_agg retorna um RECORD e pseudotypes não podem ser usados em functions
 function getValSts(req, res, next) {
-    return db.any("select st.idStation, st.name, st.lat, st.lon, json_agg((ss.slot, ss.bike)) as slots from bike_station as st, station_slot as ss where ss.idStation = st.idStation AND ss.state = TRUE AND st.state = TRUE GROUP BY st.idStation;")
-        .then(function (data) {
-            res.status(200)
-                .json(response.success(data, 'Retornou informações válidas de estações válidas'));
-        })
-        .catch(function (err) {
-            res.status(500).json(response.failure(err));
-        });
+  return db.any("select st.idStation, st.name, st.lat, st.lon, json_agg((ss.slot, ss.bike)) as slots from bike_station as st, station_slot as ss where ss.idStation = st.idStation AND ss.state = TRUE AND st.state = TRUE GROUP BY st.idStation;")
+    .then(function (data) {
+      res.status(200)
+        .json(response.success(data, 'Retornou informações válidas de estações válidas'));
+    })
+    .catch(function (err) {
+      res.status(500).json(response.failure(err));
+    });
 }
 
 function getStation(req, res, next) {
-  var stID = parseInt(req.params.id);
+  const stID = parseInt(req.params.id);
   return db.func('getStation', stID, queryResult.one)
     .then(function (data) {
       res.status(200)
@@ -52,7 +52,7 @@ function getStation(req, res, next) {
 }
 
 function getStationLogs(req, res, next) {
-  return db.func('getHistsStation',null,queryResult.many)
+  return db.func('getHistsStation', null, queryResult.many)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou o histórico de todas as estações'));
@@ -63,8 +63,8 @@ function getStationLogs(req, res, next) {
 }
 
 function getStationLog(req, res, next) {
-  var stID = parseInt(req.params.id);
-  return db.func('getHistStation', [stID,null], queryResult.many)
+  const stID = parseInt(req.params.id);
+  return db.func('getHistStation', [stID, null], queryResult.many)
     .then(function (data) {
       res.status(200)
         .json(response.success(data, 'Retornou o histórico de uma estação'));
@@ -75,7 +75,7 @@ function getStationLog(req, res, next) {
 }
 
 function createStation(req, res, next) {
-  return db.func('createBikeStation',[req.body.name,req.body.password,req.body.lat,req.body.lon])
+  return db.func('createBikeStation', [req.body.name, req.body.password, req.body.lat, req.body.lon])
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Uma estação inserida'));
@@ -86,7 +86,7 @@ function createStation(req, res, next) {
 }
 
 function updateStation(req, res, next) {
-  return db.func('upd_bike_station',[parseInt(req.body.idstation),req.body.name,req.body.password,req.body.lat,req.body.lon,req.body.state],queryResult.one)
+  return db.func('upd_bike_station', [parseInt(req.body.idstation), req.body.name, req.body.password, req.body.lat, req.body.lon, req.body.state], queryResult.one)
     .then(function () {
       res.status(200)
         .json(response.success({}, 'Atualizou uma estação'));
@@ -97,7 +97,7 @@ function updateStation(req, res, next) {
 }
 
 function removeStations(req, res, next) {
-  return db.func('delStations',undefined, queryResult.one)
+  return db.func('delStations', undefined, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu 1 estação'));
@@ -108,8 +108,8 @@ function removeStations(req, res, next) {
 }
 
 function removeStation(req, res, next) {
-    var stID = parseInt(req.params.id);
-  return db.func('delStation',stID,queryResult.many)
+  const stID = parseInt(req.params.id);
+  return db.func('delStation', stID, queryResult.many)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Removeu uma estação'));
@@ -120,8 +120,8 @@ function removeStation(req, res, next) {
 }
 
 function changeStationState(req, res, next) {
-  var stID = parseInt(req.params.id);
-  return db.func('changeStationState',stID, queryResult.one)
+  const stID = parseInt(req.params.id);
+  return db.func('changeStationState', stID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Mudou o estado de 1 estação'));
@@ -131,8 +131,8 @@ function changeStationState(req, res, next) {
     });
 }
 function assignSlot(req, res, next) {
-  var stID = parseInt(req.params.id);
-  return db.func('assignSlot',stID, queryResult.one)
+  const stID = parseInt(req.params.id);
+  return db.func('assignSlot', stID, queryResult.one)
     .then(function (result) {
       res.status(200)
         .json(response.success({}, 'Adicionou 1 slot a uma estação'));
@@ -142,12 +142,12 @@ function assignSlot(req, res, next) {
     });
 }
 function deassignSlot(req, res, next) {
-  var stID = parseInt(req.params.st);
-  var sl = parseInt(req.params.sl);
-  return db.func('deassignSlot',[stID,sl], queryResult.one)
+  const stID = parseInt(req.params.st);
+  const sl = parseInt(req.params.sl);
+  return db.func('deassignSlot', [stID, sl], queryResult.one)
     .then(function (result) {
       res.status(200)
-        .json(response.success({}, 'Removeu o '+ sl +'º slot de uma estação'));
+        .json(response.success({}, 'Removeu o ' + sl + 'º slot de uma estação'));
     })
     .catch(function (err) {
       res.status(500).json(response.failure(err));
@@ -155,21 +155,21 @@ function deassignSlot(req, res, next) {
 }
 
 function changeSlotState(req, res, next) {
-    var stID = parseInt(req.params.st);
-    var sl = parseInt(req.params.sl);
-    return db.func('changeSlotState',[stID,sl], queryResult.one)
-        .then(function (result) {
-            res.status(200)
-                .json(response.success({}, 'Alterou o estado do '+ sl +'º slot de uma estação'));
-        })
-        .catch(function (err) {
-          res.status(500).json(response.failure(err));
-        });
+  const stID = parseInt(req.params.st);
+  const sl = parseInt(req.params.sl);
+  return db.func('changeSlotState', [stID, sl], queryResult.one)
+    .then(function (result) {
+      res.status(200)
+        .json(response.success({}, 'Alterou o estado do ' + sl + 'º slot de uma estação'));
+    })
+    .catch(function (err) {
+      res.status(500).json(response.failure(err));
+    });
 }
 
 function getSlots(req, res, next) {
-  var stID = parseInt(req.params.id);
-  return db.func('getSlots',stID, queryResult.many)
+  const stID = parseInt(req.params.id);
+  return db.func('getSlots', stID, queryResult.many)
     .then(function (result) {
       res.status(200)
         .json(response.success(result, 'Retornou os slots de uma estação'));
@@ -181,15 +181,15 @@ function getSlots(req, res, next) {
 
 module.exports = {
   getStations: getStations, // feito
-    getStationsName: getStationsName, // feito
-    getValSts: getValSts,
+  getStationsName: getStationsName, // feito
+  getValSts: getValSts,
   getStation: getStation, // feito
   changeStationState: changeStationState, // feito
   getStationLogs: getStationLogs, // feito mas não funciona
   getStationLog: getStationLog, // feito
   assignSlot: assignSlot, // feito
   deassignSlot: deassignSlot, // feito
-    changeSlotState: changeSlotState, // feito
+  changeSlotState: changeSlotState, // feito
   getSlots: getSlots, // feito
   createStation: createStation, // feito
   updateStation: updateStation, // feito

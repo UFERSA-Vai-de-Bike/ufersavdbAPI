@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var db = require('../db/users');
+const db = require('../db/users');
 
 /* A ORDEM DA DECLARAÇÃO IMPORTA
 *
@@ -34,6 +34,5 @@ router.post('/signup',db.signup);
 router.put('/', db.updateUser);
 router.delete('/', db.removeUsers);
 router.delete('/:id', db.removeUser);
-
 
 module.exports = router;
