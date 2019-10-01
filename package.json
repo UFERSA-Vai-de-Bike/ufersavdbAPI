@@ -18,7 +18,7 @@
     "pg-promise": "^6.10.2"
   },
   "description": "Aplicação Javascript utilizando NodeJs e ExpressJs.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "devDependencies": {},
   "scripts": {
     "test": "npm run jest",
