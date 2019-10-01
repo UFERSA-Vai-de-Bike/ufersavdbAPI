@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var db = require('../db/stations');
+const db = require('../db/stations');
 
 /* A ORDEM DA DECLARAÇÃO IMPORTA
  *

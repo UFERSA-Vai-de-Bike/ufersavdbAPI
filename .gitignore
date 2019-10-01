@@ -1,6 +1,9 @@
 
 # Created by https://www.gitignore.io/api/node,git,vim,linux,macos,windows,pycharm+all,visualstudiocode,sublimetext
 
+## Dot End
+.env
+
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false

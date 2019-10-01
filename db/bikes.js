@@ -1,8 +1,8 @@
-var connector = require('./connector');
-var response = require('../response');
+const connector = require('./connector');
+const response = require('../response');
 
-var db = connector.db;
-var queryResult = connector.queryResult;
+const db = connector.db;
+const queryResult = connector.queryResult;
 
 // add query functions
 
