@@ -23,6 +23,7 @@
   "scripts": {
     "test": "npm run jest",
     "jest": "jest",
+    "copy-env": "cp .env-example .env",
     "coverage": "http-server ./coverage/lcov-report -o",
     "start": "nodemon ./bin/www",
     "start:debug": "DEBUG=express:* nodemon ./bin/www"
