@@ -62,6 +62,6 @@ A interface do Swagger está disponível em http://localhost:3000/api-docs
 
 ## Iniciando o Projeto
 
-Para iniciar o projeto, basta definir um arquivo ``` .env` `` na pasta raíz, semelhante ao arquivo .env-example. Contendo as variáveis para conexão ao banco da aplicação.
+Para iniciar o projeto, basta definir um arquivo .env na pasta raíz, semelhante ao arquivo .env-example. Contendo as variáveis para conexão ao banco da aplicação, etc.
 
-Em seguida basta rodar o comando ```npm start```.
+Em seguida basta rodar o comando `` npm start```. Caso prefira se basear no .env-example basta rodar um `npm run copy-env`.

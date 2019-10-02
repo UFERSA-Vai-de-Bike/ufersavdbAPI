@@ -1,10 +1,11 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
 
-router.get('/',present);
-
-function present(req, res, next) {
-	res.send('UFERSA Vai de Bike API');
+function present(req, res) {
+  res.send("UFERSA Vai de Bike API");
 }
+
+router.get("/", present);
 
 module.exports = router;

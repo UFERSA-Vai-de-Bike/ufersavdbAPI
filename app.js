@@ -1,11 +1,11 @@
 // ==================================
 // pegando os pacotes que precisamos
 // ==================================
-const express = require('express');
-const cors = require('cors')
+const express = require("express");
+const cors = require("cors");
 const app = express();
-const bodyparser = require('body-parser');
-const morgan = require('morgan');
+const bodyparser = require("body-parser");
+const morgan = require("morgan");
 const dotenv = require("dotenv");
 
 // ==================================
@@ -50,11 +50,11 @@ app.use(cors());
 // ==================================
 // rotas ============================
 // ==================================
-var index = require("./routes/index");
-var users = require("./routes/users");
-var stations = require("./routes/stations");
-var bikes = require("./routes/bikes");
-var transactions = require("./routes/transactions");
+const index = require("./routes/index");
+const users = require("./routes/users");
+const stations = require("./routes/stations");
+const bikes = require("./routes/bikes");
+const transactions = require("./routes/transactions");
 
 app.use("/api", index);
 app.use("/api/users", users);
@@ -64,7 +64,7 @@ app.use("/api/transactions", transactions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
 
   err.status = 404;
   next(err);
