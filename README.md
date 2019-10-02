@@ -56,6 +56,10 @@ Os mantenedores do projeto que não seguem ou aplicam o Código de Conduta de bo
 
 Este Código de Conduta é adaptado do Pacto do Colaborador, versão 1.4, disponível em http://contributor-covenant.org/version/1/4
 
+### Documentação
+Este projeto utiliza Swagger para gerar a sua documentação e também como ferramenta de auxílio para utilização dos endpoints. 
+A interface do Swagger está disponível em http://localhost:3000/api-docs
+
 ## Iniciando o Projeto
 
 Para iniciar o projeto, basta definir um arquivo .env na pasta raíz, semelhante ao arquivo .env-example. Contendo as variáveis para conexão ao banco da aplicação, etc.
