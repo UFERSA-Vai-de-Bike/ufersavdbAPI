@@ -19,10 +19,18 @@
   },
   "description": "Aplicação Javascript utilizando NodeJs e ExpressJs.",
   "version": "1.1.1",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "1.18.2",
+    "prettier-eslint": "^9.0.0"
+  },
   "scripts": {
     "test": "npm run jest",
     "jest": "jest",
+    "copy-env": "cp .env-example .env",
     "coverage": "http-server ./coverage/lcov-report -o",
     "start": "nodemon ./bin/www",
     "start:debug": "DEBUG=express:* nodemon ./bin/www"

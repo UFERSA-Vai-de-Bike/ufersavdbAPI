@@ -58,6 +58,6 @@ Este Código de Conduta é adaptado do Pacto do Colaborador, versão 1.4, dispon
 
 ## Iniciando o Projeto
 
-Para iniciar o projeto, basta definir um arquivo ``` .env` `` na pasta raíz, semelhante ao arquivo .env-example. Contendo as variáveis para conexão ao banco da aplicação.
+Para iniciar o projeto, basta definir um arquivo .env na pasta raíz, semelhante ao arquivo .env-example. Contendo as variáveis para conexão ao banco da aplicação, etc.
 
-Em seguida basta rodar o comando ```npm start```.
+Em seguida basta rodar o comando `` npm start```. Caso prefira se basear no .env-example basta rodar um `npm run copy-env`.
