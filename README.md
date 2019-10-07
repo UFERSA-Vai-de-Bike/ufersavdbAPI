@@ -1,50 +1,50 @@
 # ufersavdbAPI [![Build Status](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI.svg?branch=master)](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI)
 
-Aplicação Javascript utilizando NodeJs e ExpressJs serve de backend para o projeto e sistema de bicicletas compartilhadas UFERSA Vai de Bike.
+    
+    
+Aplicação Javascript que utiliza NodeJs e ExpressJs. Serve de backend para o projeto e para o sistema de bicicletas compartilhadas "UFERSA Vai de Bike."
 
-## Referências
 
-[Designing a RESTful API with Node and Postgres](https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
 
 # Contribuindo
 
-Ao contribuir com este repositório, por favor, discuta primeiro a mudança que você deseja fazer via _issue_, e-mail ou qualquer outro método com os proprietários deste repositório antes de fazer uma alteração.
+Ao contribuir com este repositório pedimos a gentileza de discutir primeiro a mudança que você deseja fazer via _issue_, e-mail ou qualquer outro método com os proprietários deste repositório antes de fazer uma alteração.
 
-Por favor, note que temos um código de conduta, por favor, siga-o em todas as suas interações com o projeto.
+Note que temos um código de conduta. Por favor, siga-o em todas as suas interações com o projeto.
 
-## Código de conduta
+## Código de Conduta
 
 ### Nosso compromisso
 
-No interesse de promover um ambiente aberto e acolhedor, nós, como colaboradores e mantenedores, comprometemo-nos a tornar a participação em nosso projeto e em nossa comunidade uma experiência livre de assédio para todos, independentemente da idade, tamanho do corpo, deficiência, etnia, identidade e expressão de gênero. nível de experiência, nacionalidade, aparência pessoal, raça, religião ou identidade e orientação sexual.
+No interesse de promover um ambiente aberto e acolhedor, nós, como colaboradores e mantenedores, comprometemo-nos a tornar a participação em nosso projeto e em nossa comunidade uma experiência livre de assédio para todos, independentemente da idade, tamanho do corpo, deficiência, etnia, identidade e expressão de gênero, nível de experiência, nacionalidade, aparência pessoal, raça, religião ou identidade e orientação sexual.
 
 ### Nossos padrões
 
 Exemplos de comportamento que contribuem para criar um ambiente positivo incluem:
 
-- Usando linguagem acolhedora e inclusiva
-- Ser respeitoso com pontos de vista e experiências diferentes
-- Graciosamente aceitando críticas construtivas
-- Concentrando-se no que é melhor para a comunidade
-- Mostrando empatia em relação a outros membros da comunidade
+- A utilização de linguagem acolhedora e inclusiva;
+- O respeito com pontos de vista e experiências diferentes;
+- A receptividade em relação às críticas construtivas;
+- O foco no que é melhor para a comunidade;
+- A empatia para com outros membros da comunidade.
 
 Exemplos de comportamento inaceitável pelos participantes incluem:
 
-- O uso de linguagem ou imagens sexualizadas e atenção sexual indesejada ou avanços
-- Trolling, insultos / comentários depreciativos e ataques pessoais ou políticos
-- Assédio público ou privado
-- Publicação de informações privadas de outras pessoas, como endereço físico ou eletrônico, sem permissão explícita
-- Outra conduta que poderia razoavelmente ser considerada inadequada em um ambiente profissional
+- A utilização de linguagem ou imagens sexualizadas e atenção sexual indesejada ou avanços;
+- _Trolling_, insultos e/ou comentários depreciativos e ataques pessoais ou políticos;
+- O assédio público ou privado;
+- A publicação de informações privadas de outras pessoas, como endereço físico ou eletrônico, sem permissão explícita;
+- Outra conduta que poderia razoavelmente ser considerada inadequada em um ambiente profissional.
 
 ### Nossas Responsabilidades
 
-Os mantenedores do projeto são responsáveis por esclarecer os padrões de comportamento aceitável e devem tomar medidas corretivas apropriadas e justas em resposta a quaisquer casos de comportamento inaceitável.
+Os mantenedores do projeto são responsáveis por esclarecer os padrões de comportamento aceitável e devem tomar as medidas corretivas apropriadas e justas em resposta a quaisquer casos de comportamento inaceitável.
 
-Os mantenedores do projeto têm o direito e a responsabilidade de remover, editar ou rejeitar comentários, commits, códigos, edições do wiki, questões e outras contribuições que não estejam alinhadas a este Código de Conduta, ou banir temporariamente ou permanentemente qualquer colaborador por outros comportamentos que julgam inapropriado, ameaçador, ofensivo ou prejudicial.
+Além disso, têm o direito e a responsabilidade de remover, editar ou rejeitar comentários, _commits_, códigos, edições do wiki, questões e outras contribuições que não estejam alinhadas a este Código de Conduta, ou banir temporariamente ou permanentemente qualquer colaborador por outros comportamentos que julgarem inapropriado, ameaçador, ofensivo ou prejudicial.
 
 ### Escopo
 
-Este Código de Conduta se aplica tanto nos espaços do projeto quanto nos espaços públicos quando um indivíduo está representando o projeto ou sua comunidade. Exemplos de representação de um projeto ou comunidade incluem o uso de um endereço de e-mail oficial do projeto, postagem por meio de uma conta oficial de mídia social ou a atuação como um representante nomeado em um evento on-line ou off-line. A representação de um projeto pode ser definida e esclarecida pelos mantenedores do projeto.
+Este Código de Conduta se aplica, tanto nos espaços do projeto, quanto nos espaços públicos em que um indivíduo está representando o projeto ou sua comunidade. Exemplos de representação de um projeto ou comunidade incluem o uso de um endereço de e-mail oficial do projeto, postagem por meio de uma conta oficial de mídia social ou a atuação como um representante nomeado em um evento on-line ou off-line. A representação de um projeto pode ser definida e esclarecida pelos mantenedores do projeto.
 
 ### Aplicação
 
@@ -64,4 +64,18 @@ A interface do Swagger está disponível em http://localhost:3000/api-docs
 
 Para iniciar o projeto, basta definir um arquivo .env na pasta raíz, semelhante ao arquivo .env-example. Contendo as variáveis para conexão ao banco da aplicação, etc.
 
-Em seguida basta rodar o comando `` npm start```. Caso prefira se basear no .env-example basta rodar um `npm run copy-env`.
+Em seguida basta rodar o comando `npm start`. Caso prefira se basear no .env-example basta rodar um `npm run copy-env`.
+
+## Requisitos
+
+### Requisitos
+
+`npm version: `
+
+`node version: `
+
+`nodemon version: 1.19.3`
+
+## Referências
+
+[Designing a RESTful API with Node and Postgres](https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
