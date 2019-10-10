@@ -1,3 +1,7 @@
+[Português]
+
+
+
 # ufersavdbAPI [![Build Status](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI.svg?branch=master)](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI)
 
     
@@ -79,3 +83,81 @@ Em seguida basta rodar o comando `npm start`. Caso prefira se basear no .env-exa
 ## Referências
 
 [Designing a RESTful API with Node and Postgres](https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
+
+------------------------------------------------------------------------------------
+[English]
+
+
+# ufersavdbAPI [![Build Status](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI.svg?branch=master)](https://travis-ci.org/UFERSA-Vai-de-Bike/ufersavdbAPI)
+
+Javascript application that uses NodeJs and ExpressJs. It serves as a backend for the project and the "UFERSA Vai de Bike" shared bike system.
+
+# Contributing
+
+By contributing to this repository we kindly discuss first the change you wish to make via _issue_, email or any other method with the owners of this repository before making a change.
+
+Note that we have a Code of Conduct. Please follow it in all your interactions with the project.
+
+## Code of Conduct
+
+### Our compromise
+
+In the interest of spreading an open and welcoming environment, we, as contributors and maintainers, commit ourselves to making participation in our project and our community a harassment-free experience for everyone regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion or identity and sexual orientation.
+
+### Our Standards
+
+Examples of behavior that contribute to creating a positive environment include:
+
+- The use of welcoming and inclusive language;
+- Respect with different points of view and experiences;
+- Responsiveness to constructive criticism;
+- Focus on what is best for the community;
+- Empathy with other community members.
+
+Examples of unacceptable behavior by participants include:
+
+- The use of sexualized language or images and unwanted sexual attention or advances;
+- Trolling, insults and / or derogatory comments and personal or political attacks;
+- Public or private harassment;
+- The posting of other people's private information, such as physical or electronic address, without explicit permission;
+- Other conduct that could reasonably be considered inappropriate in a professional setting.
+
+### Our Responsibilities
+
+Project maintainers are responsible for clarifying standards of acceptable behavior and should take appropriate and fair corrective action in response to any cases of unacceptable behavior.
+
+In addition, they have the right and responsibility to remove, edit or reject comments, commits, codes, wiki edits, questions and other contributions that are not in line with this Code of Conduct, or to temporarily or permanently ban any contributor for other behaviors that deem inappropriate, threatening, offensive or harmful.
+
+### Scope
+
+This Code of Conduct applies in both project spaces and public spaces where an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting through an official social media account, or acting as a nominated representative at an online or offline event. The representation of a project can be defined and clarified by the project maintainers.
+
+### Application
+
+Instances of abusive, offensive or unacceptable behavior can be reported by contacting the project team at ufersavaidebike@gmail.com. All complaints will be reviewed and investigated and will result in a response deemed necessary and appropriate to the circumstances. The project team is required to maintain confidentiality with respect to the rapporteur of an incident. More details on specific execution policies can be posted separately.
+
+Project maintainers who do not follow or apply the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project leadership.
+
+### Assignment
+
+This Code of Conduct is adapted to the Employee Pact, version 1.4, available at http://contributor-covenant.org/version/1/4
+
+### Documentation
+This project uses Swagger to generate your password and also as a terminal aid tool.
+A Swagger interface is available at http: // localhost: 3000 / api-docs
+
+## Starting the Project
+
+To start the project, simply set a .env file in the root folder, similar to the .env-example .; containing the variables to connect to the application database, etc.
+
+Then just run the `npm start` command. If you prefer to rely on .env-example just run a `npm run copy-env`.
+
+### Requirements
+
+`npm version:`
+`node version:`
+`nodemon version: 1.19.3`
+
+## References
+
+[Creating a Node and Postgres RESTful API] (https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
