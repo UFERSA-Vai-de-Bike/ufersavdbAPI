@@ -144,7 +144,7 @@ This Code of Conduct is adapted to the Employee Pact, version 1.4, available at 
 
 ### Documentation
 This project uses Swagger to generate your password and also as a terminal aid tool.
-A Swagger interface is available at http: // localhost: 3000 / api-docs
+A Swagger interface is available at http://localhost:3000/api-docs
 
 ## Starting the Project
 
@@ -154,10 +154,12 @@ Then just run the `npm start` command. If you prefer to rely on .env-example jus
 
 ### Requirements
 
-`npm version:`
-`node version:`
+`npm version: `
+
+`node version: `
+
 `nodemon version: 1.19.3`
 
 ## References
 
-[Creating a Node and Postgres RESTful API] (https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
+[Creating a Node and Postgres RESTful API](https://mherman.org/blog/designing-a-restful-api-with-node-and-postgres/)
