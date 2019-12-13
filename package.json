@@ -14,7 +14,7 @@
     "jsonwebtoken": "^8.0.1",
     "morgan": "^1.8.2",
     "nodemon": "^1.12.1",
-    "npm": "^5.4.2",
+    "npm": "^6.13.4",
     "pg-promise": "^6.10.2",
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.1.1"
